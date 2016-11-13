@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~     This file is part of Prisma.
+  ~
+  ~     Prisma is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Prisma is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Prisma.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:gravity="center_horizontal" android:id="@+id/parentLayout">
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/hello"
+		android:layout_gravity="center_horizontal" android:gravity="center_horizontal"
+		android:id="@+id/titleWelcome" />
+	<ScrollView android:layout_height="wrap_content"
+		android:layout_width="match_parent" android:id="@+id/scrollView1">
+		<LinearLayout android:id="@+id/linearLayout1"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:orientation="vertical" android:gravity="center_horizontal" >
+			<View android:id="@+id/focusRequester" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="1dp" android:layout_height="1dp"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/dial_number"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:id="@+id/btnNumericKeyboard" android:focusable="true"  android:focusableInTouchMode="true"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/contacts" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/btnContacts" android:focusable="true" android:focusableInTouchMode="true"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/date_time"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:id="@+id/btnDateTime" android:focusable="true" android:focusableInTouchMode="true"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/lost_calls"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:id="@+id/btnLostCalls" android:singleLine="true" android:focusable="true" android:focusableInTouchMode="true"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/checkBatteryLevel"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:id="@+id/btnCheckBatteryLevel" android:singleLine="true" android:focusable="true" android:focusableInTouchMode="true"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/sms" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/btnSMS"/>
+			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/enable_airplane_mode" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/btnAirplaneMode"/>
+<!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/email" android:layout_height="wrap_content" -->
+<!-- 				android:layout_width="wrap_content" android:id="@+id/btnEmail"/> -->
+<!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/notes" android:layout_height="wrap_content" -->
+<!-- 				android:layout_width="wrap_content" android:id="@+id/btnNotes"/> -->
+<!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/settings" android:layout_height="wrap_content" -->
+<!-- 				android:layout_width="wrap_content" android:id="@+id/btnSettings"/> -->
+		</LinearLayout>
+	</ScrollView>
+</com.condomitti.prisma.widgets.CustomLinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~     This file is part of Prisma.
+  ~
+  ~     Prisma is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Prisma is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Prisma.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <string name="low_battery_warning">Atenção, energia acabando, desligarei em breve. Ligue o celular em um carregador.</string>
+    <string name="hello">Sistema Prisma</string>
+    <string name="app_name">Prisma</string>
+    <string name="dial_number">Discar número</string>
+    <string name="numeric_keyboard">Teclado numérico</string>
+    <string name="contacts">Contatos</string>
+    <string name="lost_calls">Chamadas perdidas</string>
+    <string name="sms">SMS</string>
+    <string name="email">Email</string>
+    <string name="notes">Anotações</string>
+    <string name="settings">Configurações</string>
+    <string name="dial">Discar</string>
+    <string name="erase">Apagar tudo</string>
+    <string name="back">Voltar</string>
+    <string name="date_time">Data e Hora</string>
+    <string name="date">Data</string>
+    <string name="time">Hora</string>
+    <string name="search_by_voice">Busca por voz</string>
+    <string name="search_by_typing">Digitar nome</string>
+    <string name="all_contacts">Todos os contatos</string>
+    <string name="insert_new_contact">Inserir novo contato</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="check_number">Verificar número</string>
+    <string name="delete_last_number">Apagar último número</string>
+    <string name="eedit_contact">Editar Contato</string>
+    <string name="delete_contact">Apagar Contato</string>
+    <string name="telephone">Telefone</string>
+    <string name="call_this_number">Discar para esse número</string>
+    <string name="send_sms_to_this_number">Enviar um SMS para esse número</string>
+    <string name="cancel">Cancelar</string>
+    <string name="prisma">Prisma</string>
+    <string name="touch_to_unlock">Toque longo 3 vezes na tela para destravar</string>
+    <string name="check_text">Verificar texto</string>
+    <string name="delete_last_letter">Apagar última letra</string>
+    <string name="proceed">Prosseguir</string>
+    <string name="insert_name">Inserir Nome</string>
+    <string name="change_name">Alterar Nome</string>
+    <string name="insert_phone">Inserir Telefone</string>
+    <string name="insert_email">Inserir Email</string>
+    <string name="save">Salvar</string>
+    <string name="select_type">Selecione o tipo</string>
+    <string name="select_the_contact_type">Selecione o tipo de contato</string>
+    <string name="personal">Pessoal</string>
+    <string name="work">Trabalho</string>
+    <string name="home">Residência</string>
+    <string name="mobile">Celular</string>
+    <string name="others">Outros</string>
+    <string name="remove">Remover</string>
+    <string name="edit">Editar</string>
+    <string name="select_action">Selecione a ação</string>
+    <string name="deletion_completed">O contato %1$s foi apagado com sucesso!</string>
+    <string name="deletion_confirmation">Confirma apagar o contato %1$s?</string>
+    <string name="enable_uppercase">Habilitar maiúsculas</string>
+    <string name="disable_uppercase">Desabilitar maiúsculas</string>
+    <string name="double_quotation">\"</string>
+    <string name="question">\?</string>
+    <string name="toSpeakQuestion">interrogação</string>
+    <string name="toSpeakExclamation">exclamação</string>
+    <string name="toSpeakSingleQuote">aspas simples</string>
+    <string name="toSpeakDoubleQuote">aspas duplas</string>
+    <string name="toSpeakPeriod">ponto</string>
+    <string name="toSpeakColon">dois pontos</string>
+    <string name="toSpeakComma">vírgula</string>
+    <string name="toSpeakSemiColon">ponto e vírgula</string>
+    <string name="toSpeakSlash">barra</string>
+    <string name="toSpeakPlus">mais</string>
+    <string name="toSpeakMinus">menos</string>
+    <string name="toSpeakHash">jogo da velha</string>
+    <string name="toSpeakEquals">igual</string>
+    <string name="settings_screen_confirmation">Atenção, você selecionou a opção de carregar a tela padrão de configurações do celular, essa tela não possui recursos falados, deseja continuar?</string>
+    <string name="checkBatteryLevel">Verificar nível da bateria</string>
+    <string name="batteryLevel">Bateria em %1$d por cento</string>
+    <string name="noMissedCalls">Nenhuma chamada perdida registrada</string>
+    <string name="dialConfirmation">Confirma ligar para %1$s?</string>
+    <string name="screenOn">Tela ligada</string>
+    <string name="minutes">minutos</string>
+    <string name="call_from">ligação de</string>
+    <string name="found">encontrado %1$s, exibindo informações</string>
+    <string name="received_messages">Mensagens recebidas</string>
+    <string name="sent_messages">Mensagens enviadas</string>
+    <string name="send_an_sms">Enviar um SMS</string>
+    <string name="messages">Mensagens</string>
+    <string name="noMessages">A lista de mensagens está vazia</string>
+    <string name="message_from">Mensagem de</string>
+    <string name="read_message">Ler Mensagem</string>
+    <string name="reply_message">Responder Mensagem</string>
+    <string name="delete_message">Apagar Mensagem</string>
+    <string name="number_chosen_now_type_message">Número escolhido, agora digite a mensagem</string>
+    <string name="message_was_typed_now_sending">Mensagem digitada, enviando!</string>
+    <string name="type_the_number">Digite o número</string>
+    <string name="sms_successfully_sent">Mensagem enviada com sucesso!</string>
+    <string name="sms_unsuccessfully_sent">Erro ao enviar mensagem!</string>
+    <string name="enable_airplane_mode">Habilitar modo avião</string>
+    <string name="disable_airplane_mode">Desabilitar modo avião</string>
+    <string name="airplane_mode_is_on">O telefone está em modo avião</string>
+
+</resources>

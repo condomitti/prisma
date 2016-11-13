@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~     This file is part of Prisma.
+  ~
+  ~     Prisma is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Prisma is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Prisma.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollNumKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/focusRequester"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <TextView
+                android:id="@+id/telephoneDisplay"
+                style="@style/TelephoneDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true" >
+            </TextView>
+
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum1"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="1" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum2"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="2" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum3"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="3" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum4"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="4" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum5"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="5" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum6"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="6" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum7"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="7" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum8"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="8" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum9"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="9" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNumAst"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="*" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNum0"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="0" />
+
+                    <com.condomitti.prisma.widgets.UntouchableButton
+                        android:id="@+id/btnNumHash"
+                        style="@style/KeyboardButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:text="#" />
+                </TableRow>
+            </TableLayout>
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnCheckNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/check_number" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnDeleteLastNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/delete_last_number" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnErase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/erase" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnProceed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/proceed" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/back" />
+        </LinearLayout>
+    </ScrollView>
+
+</com.condomitti.prisma.widgets.CustomLinearLayout>

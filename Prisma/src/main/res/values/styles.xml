@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~     This file is part of Prisma.
+  ~
+  ~     Prisma is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Prisma is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Prisma.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Main Theme - based on Theme.Light -->
+    
+	<style name="CustomStyle" parent="@android:style/Theme.Light">
+		<item name="android:buttonStyle">@style/CustomButton</item>
+	</style>
+	
+	
+    <!-- General-purpose buttons -->
+
+    <style name="CustomButton" parent="@android:style/Widget.Button">
+    	<item name="android:layout_height">70dip</item>
+    	<item name="android:height">70dip</item>
+    	<item name="android:layout_width">300dip</item>
+    	<item name="android:width">300dip</item>
+    	<item name="android:textSize">50dip</item>
+    	<item name="android:padding">0px</item>
+    	<item name="android:ellipsize">marquee</item>
+    	<item name="android:singleLine">true</item>
+    	<item name="android:focusable">true</item>
+    </style>
+    
+    
+    <!-- Telephone -->
+    
+    <style name="TelephoneDisplay">
+    	<item name="android:textSize">60sp</item>
+    	<item name="android:gravity">center_horizontal</item>
+    </style>
+    
+    <style name="KeyboardButton" parent="@android:style/Widget.Button">
+    	<item name="android:layout_weight">1</item>
+    </style>
+    
+    <style name="ListsTextView">
+    	<item name="android:textSize">40sp</item>
+    	<item name="android:textColor">#000000</item>
+    </style>
+    
+    <style name="ListsTextViewFocused">
+    	<item name="android:textSize">40sp</item>
+    	<item name="android:textColor">#000000</item>
+    	<item name="android:textStyle">bold</item>
+    </style>
+</resources>

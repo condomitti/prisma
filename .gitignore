@@ -1,0 +1,16 @@
+Prisma/build/
+Prisma/*.apk
+*.iml
+.gradle/
+gradle/
+local.properties
+.idea/
+.DS_Store
+build
+captures
+.externalNativeBuild
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
+import-summary.txt

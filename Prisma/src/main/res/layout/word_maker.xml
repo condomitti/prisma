@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~     This file is part of Prisma.
+  ~
+  ~     Prisma is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     Prisma is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with Prisma.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/focusRequester"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <TextView
+                android:id="@+id/txtTypedLetters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:focusable="true"
+                android:text="" >
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check_text" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnDeleteLastLetter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete_last_letter" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnErase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/erase" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnContinue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/proceed" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnToggleUppercase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enable_uppercase" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnSpace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ESPAÇO" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnPeriod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="." />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnColon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnComma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="," />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnSemiColon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=";" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnSlash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnMinus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnEquals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="=" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/question" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnExclamation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="!" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnSingleQuote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&apos;" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnDoubleQuote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/double_quotation" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="C" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="F" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="G" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="H" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnJ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="J" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="L" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="O" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="P" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Q" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="S" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="T" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="U" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="V" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="W" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Y" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btnZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Z" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8" />
+
+                <com.condomitti.prisma.widgets.UntouchableButton
+                    android:id="@+id/btn9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</com.condomitti.prisma.widgets.CustomLinearLayout>
