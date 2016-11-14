@@ -21,71 +21,71 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class Bean_Contact implements Serializable{
-	private int _id;
-	private int _raw_id;
-	private String name;
-	
-	/**
-	 * For E-mail and Phone structures the format of the List should be kept like this:
-	 * index(0) - type (String)
-	 * index(1) - data
-	 * index(2) - type (standard int from Android API)
-	 * index(3) - row id
-	 */
-	private ArrayList<ArrayList<String>> emails;
-	private ArrayList<ArrayList<String>> phones;
-	
-	public Bean_Contact(int _id, int _raw_id, String name,
-			ArrayList<ArrayList<String>> emails,
-			ArrayList<ArrayList<String>> phones) {
-		super();
-		this._id = _id;
-		this._raw_id = _raw_id;
-		this.name = name;
-		this.emails = emails;
-		this.phones = phones;
-	}
+public class Bean_Contact implements Serializable {
+    private int _id;
+    private int _raw_id;
+    private String name;
 
-	public int get_id() {
-		return _id;
-	}
+    /**
+     * For E-mail and Phone structures the format of the List should be kept like this:
+     * index(0) - type (String)
+     * index(1) - data
+     * index(2) - type (standard int from Android API)
+     * index(3) - row id
+     */
+    private ArrayList<ArrayList<String>> emails;
+    private ArrayList<ArrayList<String>> phones;
 
-	public void set_id(int _id) {
-		this._id = _id;
-	}
-	
-	public int get_raw_id() {
-		return _raw_id;
-	}
-	
-	public void set_raw_id(int _raw_id) {
-		this._raw_id = _raw_id;
-	}
+    public Bean_Contact(int _id, int _raw_id, String name,
+                        ArrayList<ArrayList<String>> emails,
+                        ArrayList<ArrayList<String>> phones) {
+        super();
+        this._id = _id;
+        this._raw_id = _raw_id;
+        this.name = name;
+        this.emails = emails;
+        this.phones = phones;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int get_id() {
+        return _id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 
-	public ArrayList<ArrayList<String>> getEmails() {
-		return emails;
-	}
+    public int get_raw_id() {
+        return _raw_id;
+    }
 
-	public void setEmails(ArrayList<ArrayList<String>> emails) {
-		this.emails = emails;
-	}
+    public void set_raw_id(int _raw_id) {
+        this._raw_id = _raw_id;
+    }
 
-	public ArrayList<ArrayList<String>> getPhones() {
-		return phones;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPhones(ArrayList<ArrayList<String>> phones) {
-		this.phones = phones;
-	}
-	
-		
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<ArrayList<String>> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(ArrayList<ArrayList<String>> emails) {
+        this.emails = emails;
+    }
+
+    public ArrayList<ArrayList<String>> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(ArrayList<ArrayList<String>> phones) {
+        this.phones = phones;
+    }
+
+
 }

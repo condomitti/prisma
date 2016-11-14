@@ -31,91 +31,91 @@ import android.widget.Button;
 import com.condomitti.prisma.R;
 
 public class ContactDataActions extends SuperActivity implements
-		OnClickListener{
-	public static final int ACTION_EDIT = 63452;
-	public static final int ACTION_DELETE = 75634;
+        OnClickListener {
+    public static final int ACTION_EDIT = 63452;
+    public static final int ACTION_DELETE = 75634;
 
-	private Button btnCancel, btnRemove, btnEdit = null;
-	private List<HashMap<String, Object>> actions = null;
+    private Button btnCancel, btnRemove, btnEdit = null;
+    private List<HashMap<String, Object>> actions = null;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		Tools.setScreenSettings(this);
+        Tools.setScreenSettings(this);
 
-		Tools.speak(getResources().getString(R.string.select_action), true);
+        Tools.speak(getResources().getString(R.string.select_action), true);
 
-		setupContents();
-		makeUpScreen();
+        setupContents();
+        makeUpScreen();
 
-	}
+    }
 
-	public void makeUpScreen() {
-		Dialog dialog = new SuperDialog(this);
-		dialog.setContentView(R.layout.contact_data_action);
-		dialog.setCancelable(false);
-		dialog.setTitle(getResources().getString(R.string.select_type));
+    public void makeUpScreen() {
+        Dialog dialog = new SuperDialog(this);
+        dialog.setContentView(R.layout.contact_data_action);
+        dialog.setCancelable(false);
+        dialog.setTitle(getResources().getString(R.string.select_type));
 
-		/**
-		 * Retrieves references
-		 */
-		btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
-		btnRemove = (Button) dialog.findViewById(R.id.btnRemove);
-		btnEdit = (Button) dialog.findViewById(R.id.btnEdit);
+        /**
+         * Retrieves references
+         */
+        btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+        btnRemove = (Button) dialog.findViewById(R.id.btnRemove);
+        btnEdit = (Button) dialog.findViewById(R.id.btnEdit);
 
-		/**
-		 * Sets listeners
-		 */
-		btnCancel.setOnClickListener(this);
-		btnEdit.setOnClickListener(this);
-		btnRemove.setOnClickListener(this);
+        /**
+         * Sets listeners
+         */
+        btnCancel.setOnClickListener(this);
+        btnEdit.setOnClickListener(this);
+        btnRemove.setOnClickListener(this);
 
-		dialog.show();
+        dialog.show();
 
-	}
+    }
 
-	public void setupContents() {
-		actions = new ArrayList<HashMap<String, Object>>();
+    public void setupContents() {
+        actions = new ArrayList<HashMap<String, Object>>();
 
-		HashMap<String, Object> t1 = new HashMap<String, Object>();
-		t1.put("txtAction", getResources().getString(R.string.edit));
-		t1.put("action", ACTION_EDIT);
+        HashMap<String, Object> t1 = new HashMap<String, Object>();
+        t1.put("txtAction", getResources().getString(R.string.edit));
+        t1.put("action", ACTION_EDIT);
 
-		HashMap<String, Object> t2 = new HashMap<String, Object>();
-		t2.put("txtAction", getResources().getString(R.string.remove));
-		t2.put("action", ACTION_DELETE);
+        HashMap<String, Object> t2 = new HashMap<String, Object>();
+        t2.put("txtAction", getResources().getString(R.string.remove));
+        t2.put("action", ACTION_DELETE);
 
-		actions.add(t1);
-		actions.add(t2);
+        actions.add(t1);
+        actions.add(t2);
 
-	}
+    }
 
-	@Override
-	public void onClick(View v) {
-		int cAction = 0;
-		Tools.speak("Selecionado " + ((Button)v).getText(), false);
+    @Override
+    public void onClick(View v) {
+        int cAction = 0;
+        Tools.speak("Selecionado " + ((Button) v).getText(), false);
 
-		switch (v.getId()) {
-		case R.id.btnCancel:
-			setResult(RESULT_CANCELED);
-			finish();
-			break;
-		case R.id.btnRemove:
-			cAction = ACTION_DELETE;
-			break;
-		case R.id.btnEdit:
-			cAction = ACTION_EDIT;
-			break;
-		}
-		
-		setResult(cAction);
-		finish();
-	}
+        switch (v.getId()) {
+            case R.id.btnCancel:
+                setResult(RESULT_CANCELED);
+                finish();
+                break;
+            case R.id.btnRemove:
+                cAction = ACTION_DELETE;
+                break;
+            case R.id.btnEdit:
+                cAction = ACTION_EDIT;
+                break;
+        }
+
+        setResult(cAction);
+        finish();
+    }
 
 
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return true;
-	}
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 }

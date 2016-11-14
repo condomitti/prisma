@@ -26,23 +26,24 @@ import com.condomitti.prisma.utils.Tools;
 
 public class UntouchableButton extends Button {
 
-	public UntouchableButton(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		setFocusable(true);
-		setFocusableInTouchMode(true);
-		setOnFocusChangeListener(Tools.pfListenerQueue);
-	}
-	public UntouchableButton(Context context) {
-		super(context);
-		setFocusable(true);
-		setFocusableInTouchMode(true);
-		
-		setOnFocusChangeListener(Tools.pfListenerQueue);
-	}
-	
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		return false;
-	}
+    public UntouchableButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        setOnFocusChangeListener(Tools.pfListenerQueue);
+    }
+
+    public UntouchableButton(Context context) {
+        super(context);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+
+        setOnFocusChangeListener(Tools.pfListenerQueue);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
+    }
 
 }

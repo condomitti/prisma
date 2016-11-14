@@ -30,92 +30,93 @@ import android.widget.TextView;
 import com.condomitti.prisma.utils.SuperActivity;
 import com.condomitti.prisma.utils.Tools;
 
-public class DateTime extends SuperActivity implements OnClickListener{
+public class DateTime extends SuperActivity implements OnClickListener {
 
-	Button btnDate, btnTime, btnBack = null;
+    Button btnDate, btnTime, btnBack = null;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		Tools.setScreenSettings(this);
+        Tools.setScreenSettings(this);
 
-		makeUpScreen();
-	}
+        makeUpScreen();
+    }
 
-	public void makeUpScreen(){
-		setContentView(R.layout.date_time);
-		super.loadTouchables();
-		
-		TextView title = (TextView)findViewById(R.id.titleDateTime);
-		title.setFocusable(true);
-		title.requestFocus();
+    public void makeUpScreen() {
+        setContentView(R.layout.date_time);
+        super.loadTouchables();
 
-		/**
-		 * Retrieves references
-		 */
-		btnDate = (Button)findViewById(R.id.btnDate);
-		btnTime = (Button)findViewById(R.id.btnTime);
-		btnBack = (Button)findViewById(R.id.btnBack);
+        TextView title = (TextView) findViewById(R.id.titleDateTime);
+        title.setFocusable(true);
+        title.requestFocus();
 
-		/**
-		 * Sets Listeners
-		 */
-		btnDate.setOnClickListener(this);
-		btnTime.setOnClickListener(this);
-		btnBack.setOnClickListener(this);
+        /**
+         * Retrieves references
+         */
+        btnDate = (Button) findViewById(R.id.btnDate);
+        btnTime = (Button) findViewById(R.id.btnTime);
+        btnBack = (Button) findViewById(R.id.btnBack);
 
-	}
+        /**
+         * Sets Listeners
+         */
+        btnDate.setOnClickListener(this);
+        btnTime.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
-	//THIS SHOULD BE CHANGED TO REFLECT LOCALE SETTINGS
-	public void getTime(){
-		Calendar c = Calendar.getInstance();
-		StringBuilder sb = new StringBuilder("Agora são ");
-		sb.append(c.get(Calendar.HOUR_OF_DAY));
-		sb.append(" e ");
-		sb.append(c.get(Calendar.MINUTE));
-		sb.append(" minutos ");
-		
-		Tools.speak(sb.toString(), true);
-		
-	}
-	public void getDate(){
-		Calendar c = Calendar.getInstance();
-		StringBuilder sb = new StringBuilder("Hoje é ");
-		sb.append(Tools.daysOfWeek[c.get(Calendar.DAY_OF_WEEK) - 1]);
-		sb.append(c.get(Calendar.DAY_OF_MONTH));
-		sb.append(" de ");
-		sb.append(Tools.months[c.get(Calendar.MONTH)]);
-		sb.append(" de ");
-		sb.append(c.get(Calendar.YEAR));
-		
-		Tools.speak(sb.toString(), true);
-	}
-	
+    }
 
-	@Override
-	public void onClick(View v) {
+    //THIS SHOULD BE CHANGED TO REFLECT LOCALE SETTINGS
+    public void getTime() {
+        Calendar c = Calendar.getInstance();
+        StringBuilder sb = new StringBuilder("Agora são ");
+        sb.append(c.get(Calendar.HOUR_OF_DAY));
+        sb.append(" e ");
+        sb.append(c.get(Calendar.MINUTE));
+        sb.append(" minutos ");
 
-		Tools.speak("Selecionado " + ((Button)v).getText().toString(), true);
-		
-		switch (v.getId()) {
-		case R.id.btnBack:
-			finish();
+        Tools.speak(sb.toString(), true);
 
-			break;
-		case R.id.btnTime:
-			getTime();
-			
-			break;
-		case R.id.btnDate:
-			getDate();
-			
-			break;
-		}
-	}
-	
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return true;
-	}
+    }
+
+    public void getDate() {
+        Calendar c = Calendar.getInstance();
+        StringBuilder sb = new StringBuilder("Hoje é ");
+        sb.append(Tools.daysOfWeek[c.get(Calendar.DAY_OF_WEEK) - 1]);
+        sb.append(c.get(Calendar.DAY_OF_MONTH));
+        sb.append(" de ");
+        sb.append(Tools.months[c.get(Calendar.MONTH)]);
+        sb.append(" de ");
+        sb.append(c.get(Calendar.YEAR));
+
+        Tools.speak(sb.toString(), true);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        Tools.speak("Selecionado " + ((Button) v).getText().toString(), true);
+
+        switch (v.getId()) {
+            case R.id.btnBack:
+                finish();
+
+                break;
+            case R.id.btnTime:
+                getTime();
+
+                break;
+            case R.id.btnDate:
+                getDate();
+
+                break;
+        }
+    }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 }

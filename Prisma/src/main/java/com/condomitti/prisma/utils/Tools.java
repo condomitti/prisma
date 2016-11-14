@@ -60,95 +60,95 @@ import java.util.List;
 import java.util.Locale;
 
 public class Tools {
-	public static final int SHOW_SPOKEN_DIALOG = 57890;
-	public static final int CALL_PHONE_ACTIVITY = 6522346;
-	public static final int DISPLAY_WORD_MAKER = 7643443;
-	public static final int DISPLAY_NUMERIC_KEYBOARD = 7643758;
-	public static final int INITIAL_REQUESTS = 100;
-	public static boolean ttsReady = false;
+    public static final int SHOW_SPOKEN_DIALOG = 57890;
+    public static final int CALL_PHONE_ACTIVITY = 6522346;
+    public static final int DISPLAY_WORD_MAKER = 7643443;
+    public static final int DISPLAY_NUMERIC_KEYBOARD = 7643758;
+    public static final int INITIAL_REQUESTS = 100;
+    public static boolean ttsReady = false;
 
-	public static BroadcastReceiver screenHandler;
+    public static BroadcastReceiver screenHandler;
 
-	public static LinearLayout callHandlerLlRef;
-	public static int phoneState = 0;
-	private static TextToSpeech mTts;
-	public static PrismaFListenerQueue pfListenerQueue = new PrismaFListenerQueue();
-
-
-	public static String[] daysOfWeek = {"Domingo", "Segunda-feira",
-			"Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
-			"Sábado"};
-	public static String[] months = {"Janeiro", "Fevereiro", "Março", "Abril",
-			"Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro",
-			"Novembro", "Dezembro"};
-	public static String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h",
-			"i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
-			"v", "w", "x", "y", "z"};
-	public static String[] numbers = {"white_space", "0", "1", "2", "3", "4",
-			"5", "6", "7", "8", "9"};
-
-	public static void initTts(Context c, OnInitListener l) {
-		mTts = new TextToSpeech(c, l);
-	}
-
-	public static String getSpokenFormattedDate(Date d) {
-		//This should be changed to local time format
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm",
-				Locale.getDefault());
-		return sdf.format(d);
-	}
-
-	public static void showConfirm(Context ctx, String msg, int reqCode) {
-
-		Intent i = new Intent(ctx, SpokenDialog.class);
-		i.putExtra("prismaDialogMessage", msg);
-		i.putExtra("prismaDialogReqCode", reqCode);
-		((Activity) ctx).startActivityForResult(i, SHOW_SPOKEN_DIALOG);
-	}
-
-	public static void showConfirm(Context ctx, String msg) {
-		Tools.showConfirm(ctx, msg, -1);
-	}
-
-	public static boolean checkVoiceRecognition(Context c) {
-		PackageManager pm = c.getPackageManager();
-		List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(
-				RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
-
-		//Is there available resources?
-		return activities.size() > 0;
-	}
+    public static LinearLayout callHandlerLlRef;
+    public static int phoneState = 0;
+    private static TextToSpeech mTts;
+    public static PrismaFListenerQueue pfListenerQueue = new PrismaFListenerQueue();
 
 
-	public static boolean getMissedCalls(Activity actvt){
+    public static String[] daysOfWeek = {"Domingo", "Segunda-feira",
+            "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
+            "Sábado"};
+    public static String[] months = {"Janeiro", "Fevereiro", "Março", "Abril",
+            "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro",
+            "Novembro", "Dezembro"};
+    public static String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h",
+            "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+            "v", "w", "x", "y", "z"};
+    public static String[] numbers = {"white_space", "0", "1", "2", "3", "4",
+            "5", "6", "7", "8", "9"};
 
-		if (ContextCompat.checkSelfPermission(actvt, Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+    public static void initTts(Context c, OnInitListener l) {
+        mTts = new TextToSpeech(c, l);
+    }
 
-			boolean hasMissedCalls;
-			Cursor c = actvt.getApplicationContext().getContentResolver().query(
-					CallLog.Calls.CONTENT_URI,
-					null,
-					CallLog.Calls.TYPE + " = ? AND " + CallLog.Calls.NEW + " = ?",
-					new String[]{Integer.toString(CallLog.Calls.MISSED_TYPE),
-							Calls.NEW}, Calls.DATE + " DESC");
-			hasMissedCalls = c.moveToFirst();
+    public static String getSpokenFormattedDate(Date d) {
+        //This should be changed to local time format
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm",
+                Locale.getDefault());
+        return sdf.format(d);
+    }
 
-			c.close();
+    public static void showConfirm(Context ctx, String msg, int reqCode) {
 
-			return hasMissedCalls;
+        Intent i = new Intent(ctx, SpokenDialog.class);
+        i.putExtra("prismaDialogMessage", msg);
+        i.putExtra("prismaDialogReqCode", reqCode);
+        ((Activity) ctx).startActivityForResult(i, SHOW_SPOKEN_DIALOG);
+    }
 
-		}
+    public static void showConfirm(Context ctx, String msg) {
+        Tools.showConfirm(ctx, msg, -1);
+    }
 
-		return false;
+    public static boolean checkVoiceRecognition(Context c) {
+        PackageManager pm = c.getPackageManager();
+        List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(
+                RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
 
-	}
+        //Is there available resources?
+        return activities.size() > 0;
+    }
 
-	public static boolean getUnreadSMS(Activity acvt) {
 
-		if (ActivityCompat.checkSelfPermission(acvt.getApplicationContext().getApplicationContext(), Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(acvt.getApplicationContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-			final Uri SMS_INBOX = Uri.parse("content://sms/inbox");
+    public static boolean getMissedCalls(Activity actvt) {
+
+        if (ContextCompat.checkSelfPermission(actvt, Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+
+            boolean hasMissedCalls;
+            Cursor c = actvt.getApplicationContext().getContentResolver().query(
+                    CallLog.Calls.CONTENT_URI,
+                    null,
+                    CallLog.Calls.TYPE + " = ? AND " + CallLog.Calls.NEW + " = ?",
+                    new String[]{Integer.toString(CallLog.Calls.MISSED_TYPE),
+                            Calls.NEW}, Calls.DATE + " DESC");
+            hasMissedCalls = c.moveToFirst();
+
+            c.close();
+
+            return hasMissedCalls;
+
+        }
+
+        return false;
+
+    }
+
+    public static boolean getUnreadSMS(Activity acvt) {
+
+        if (ActivityCompat.checkSelfPermission(acvt.getApplicationContext().getApplicationContext(), Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(acvt.getApplicationContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            final Uri SMS_INBOX = Uri.parse("content://sms/inbox");
             Cursor c = acvt.getContentResolver().query(SMS_INBOX, null, "read = 0",
-					null, null);
+                    null, null);
             return c.moveToFirst();
         }
 
@@ -156,68 +156,68 @@ public class Tools {
 
     }
 
-	public static boolean checkInternetConnection(Context ctx) {
+    public static boolean checkInternetConnection(Context ctx) {
 
-		ConnectivityManager conMgr = (ConnectivityManager) ctx
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		return (conMgr.getActiveNetworkInfo() != null && conMgr
-				.getActiveNetworkInfo().isConnected());
+        ConnectivityManager conMgr = (ConnectivityManager) ctx
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        return (conMgr.getActiveNetworkInfo() != null && conMgr
+                .getActiveNetworkInfo().isConnected());
 
-	}
+    }
 
-	public static void speak(final String msg, long waitingTime) {
-		CountDownTimer cdt = new CountDownTimer(waitingTime, 1000) {
+    public static void speak(final String msg, long waitingTime) {
+        CountDownTimer cdt = new CountDownTimer(waitingTime, 1000) {
 
-			@Override
-			public void onTick(long millisUntilFinished) {
+            @Override
+            public void onTick(long millisUntilFinished) {
 
-			}
+            }
 
-			@Override
-			public void onFinish() {
-				speak(msg, true);
-			}
-		};
-		cdt.start();
-	}
+            @Override
+            public void onFinish() {
+                speak(msg, true);
+            }
+        };
+        cdt.start();
+    }
 
-	public static void speak(String msg, boolean appendToQueue) {
-		speak(msg, false, appendToQueue, null, false);
-	}
+    public static void speak(String msg, boolean appendToQueue) {
+        speak(msg, false, appendToQueue, null, false);
+    }
 
-	public static void speak(String msg, boolean isNumber, boolean appendToQueue) {
-		speak(msg, isNumber, appendToQueue, null, false);
-	}
+    public static void speak(String msg, boolean isNumber, boolean appendToQueue) {
+        speak(msg, isNumber, appendToQueue, null, false);
+    }
 
-	public static void speak(String msg, boolean isNumber,
-			boolean appendToQueue, boolean slower) {
-		speak(msg, isNumber, appendToQueue, null, slower);
-	}
+    public static void speak(String msg, boolean isNumber,
+                             boolean appendToQueue, boolean slower) {
+        speak(msg, isNumber, appendToQueue, null, slower);
+    }
 
-	@SuppressLint("NewApi")
-	@SuppressWarnings("deprecation")
-	public static void speak(String msg, boolean isNumber,
-			boolean appendToQueue, final GeneralExec exec, boolean slower) {
-		if (mTts != null) {
-			int append = appendToQueue ? TextToSpeech.QUEUE_ADD
-					: TextToSpeech.QUEUE_FLUSH;
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
+    public static void speak(String msg, boolean isNumber,
+                             boolean appendToQueue, final GeneralExec exec, boolean slower) {
+        if (mTts != null) {
+            int append = appendToQueue ? TextToSpeech.QUEUE_ADD
+                    : TextToSpeech.QUEUE_FLUSH;
 
-			if (isNumber) {
-				msg = handleNumber(msg);
-			}
+            if (isNumber) {
+                msg = handleNumber(msg);
+            }
 
-			if (slower) {
-				mTts.setSpeechRate(0.7f);
-			}
-			HashMap<String, String> ttsParams = new HashMap<String, String>();
-			ttsParams.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
-					String.valueOf(AudioManager.STREAM_MUSIC));
-			ttsParams.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
-					"prismaID");
+            if (slower) {
+                mTts.setSpeechRate(0.7f);
+            }
+            HashMap<String, String> ttsParams = new HashMap<String, String>();
+            ttsParams.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+                    String.valueOf(AudioManager.STREAM_MUSIC));
+            ttsParams.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
+                    "prismaID");
 
-			mTts.speak(msg, append, ttsParams);
+            mTts.speak(msg, append, ttsParams);
 
-		}
+        }
 
         if (Build.VERSION.SDK_INT >= 15) {
 
@@ -254,128 +254,129 @@ public class Tools {
             });
         }
 
-	}
+    }
 
-	public static String handleNumber(String msg) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < msg.length(); i++) {
-			sb.append(msg.charAt(i) + " ");
-		}
-		return sb.toString();
-	}
+    public static String handleNumber(String msg) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < msg.length(); i++) {
+            sb.append(msg.charAt(i) + " ");
+        }
+        return sb.toString();
+    }
 
-	public static boolean stopSpeaking() {
-		return mTts.stop() == TextToSpeech.SUCCESS ? true : false;
-	}
+    public static boolean stopSpeaking() {
+        return mTts.stop() == TextToSpeech.SUCCESS ? true : false;
+    }
 
-	public static boolean isSpeaking() {
-		return mTts.isSpeaking();
-	}
+    public static boolean isSpeaking() {
+        return mTts.isSpeaking();
+    }
 
-	public static void setUpSpeakBehavior(ViewGroup vg) {
-		for (int i = 0; i < vg.getChildCount(); i++) {
-			View view = vg.getChildAt(i);
-			if (view instanceof Button || view instanceof TextView) {
-				setFocusListener(view);
-			} else if (view instanceof ViewGroup) {
-				setUpSpeakBehavior((ViewGroup) view);
-			}
-		}
-	}
+    public static void setUpSpeakBehavior(ViewGroup vg) {
+        for (int i = 0; i < vg.getChildCount(); i++) {
+            View view = vg.getChildAt(i);
+            if (view instanceof Button || view instanceof TextView) {
+                setFocusListener(view);
+            } else if (view instanceof ViewGroup) {
+                setUpSpeakBehavior((ViewGroup) view);
+            }
+        }
+    }
 
 
     /**
      * Used to pronounce special characters in a clearer manner
-     * @param s String to be enhanced
+     *
+     * @param s   String to be enhanced
      * @param ctx The context from which to execute
      * @return String
      */
-	public static String checkSpecialChars(String s, Context ctx){
+    public static String checkSpecialChars(String s, Context ctx) {
 
-		if(s.equals(".")) return ctx.getResources().getString(R.string.toSpeakPeriod);
-		else if(s.equals(":")) return ctx.getResources().getString(R.string.toSpeakColon);
-		else if(s.equals(",")) return ctx.getResources().getString(R.string.toSpeakComma);
-		else if(s.equals(";")) return ctx.getResources().getString(R.string.toSpeakSemiColon);
-		else if(s.equals("/")) return ctx.getResources().getString(R.string.toSpeakSlash);
-		else if(s.equals("+")) return ctx.getResources().getString(R.string.toSpeakPlus);
-		else if(s.equals("-")) return ctx.getResources().getString(R.string.toSpeakMinus);
-		else if(s.equals("=")) return ctx.getResources().getString(R.string.toSpeakEquals);
-		else if(s.equals("?")) return ctx.getResources().getString(R.string.toSpeakQuestion);
-		else if(s.equals("!")) return ctx.getResources().getString(R.string.toSpeakExclamation);
-		else if(s.equals("'")) return ctx.getResources().getString(R.string.toSpeakSingleQuote);
-		else if(s.equals("\"")) return ctx.getResources().getString(R.string.toSpeakDoubleQuote);
-		else if(s.equals("#")) return ctx.getResources().getString(R.string.toSpeakHash);
-		else return s;
-		
-	}
+        if (s.equals(".")) return ctx.getResources().getString(R.string.toSpeakPeriod);
+        else if (s.equals(":")) return ctx.getResources().getString(R.string.toSpeakColon);
+        else if (s.equals(",")) return ctx.getResources().getString(R.string.toSpeakComma);
+        else if (s.equals(";")) return ctx.getResources().getString(R.string.toSpeakSemiColon);
+        else if (s.equals("/")) return ctx.getResources().getString(R.string.toSpeakSlash);
+        else if (s.equals("+")) return ctx.getResources().getString(R.string.toSpeakPlus);
+        else if (s.equals("-")) return ctx.getResources().getString(R.string.toSpeakMinus);
+        else if (s.equals("=")) return ctx.getResources().getString(R.string.toSpeakEquals);
+        else if (s.equals("?")) return ctx.getResources().getString(R.string.toSpeakQuestion);
+        else if (s.equals("!")) return ctx.getResources().getString(R.string.toSpeakExclamation);
+        else if (s.equals("'")) return ctx.getResources().getString(R.string.toSpeakSingleQuote);
+        else if (s.equals("\"")) return ctx.getResources().getString(R.string.toSpeakDoubleQuote);
+        else if (s.equals("#")) return ctx.getResources().getString(R.string.toSpeakHash);
+        else return s;
 
-	public static void setFocusListener(View v) {
-		v.setFocusable(true);
-		v.setOnFocusChangeListener(pfListenerQueue);
-	}
+    }
 
-	public static void setScreenSettings(Activity a) {
-		a.getWindow()
-				.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-		a.getWindow()
-				.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-		a.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    public static void setFocusListener(View v) {
+        v.setFocusable(true);
+        v.setOnFocusChangeListener(pfListenerQueue);
+    }
 
-	}
+    public static void setScreenSettings(Activity a) {
+        a.getWindow()
+                .addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+        a.getWindow()
+                .addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+        a.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        a.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-	public static int checkBatteryLevel(Context c) {
-		Intent batteryIntent = c.registerReceiver(null, new IntentFilter(
-				Intent.ACTION_BATTERY_CHANGED));
-		int level = batteryIntent.getIntExtra("level", 0);
-		return level;
-	}
+    }
 
-	public static String getPersonNameById(Context ctx, long id) {
-		Cursor c = ctx.getContentResolver().query(
-				ContactsContract.RawContacts.CONTENT_URI,
-				null,
-				ContactsContract.RawContacts.DELETED + " = '0'" + " and "
-						+ ContactsContract.RawContacts._ID + " = " + id, null,
-				ContactsContract.Data.DISPLAY_NAME);
-		if (c.moveToFirst()) {
-			return c.getString(c
-					.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-		}
+    public static int checkBatteryLevel(Context c) {
+        Intent batteryIntent = c.registerReceiver(null, new IntentFilter(
+                Intent.ACTION_BATTERY_CHANGED));
+        int level = batteryIntent.getIntExtra("level", 0);
+        return level;
+    }
 
-		return "desconhecido";
-	}
+    public static String getPersonNameById(Context ctx, long id) {
+        Cursor c = ctx.getContentResolver().query(
+                ContactsContract.RawContacts.CONTENT_URI,
+                null,
+                ContactsContract.RawContacts.DELETED + " = '0'" + " and "
+                        + ContactsContract.RawContacts._ID + " = " + id, null,
+                ContactsContract.Data.DISPLAY_NAME);
+        if (c.moveToFirst()) {
+            return c.getString(c
+                    .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        }
 
-	public static void resetAudioLevels(Context ctx){
-		AudioManager am = 
-			    (AudioManager) ctx.getSystemService(Context.AUDIO_SERVICE);
-			
-		int notificationLevel = (int) (am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION) * 0.8);
-		int musicLevel = (int) (am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 0.8);
-		int ringLevel = (int) (am.getStreamMaxVolume(AudioManager.STREAM_RING) * 0.8);
-		int voiceCallLevel = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		
-			am.setStreamVolume(
-			    AudioManager.STREAM_MUSIC,
-			    musicLevel,
-			    0);
-			
-			am.setStreamVolume(
-					AudioManager.STREAM_NOTIFICATION,
-					notificationLevel,
-					0);
-			
-			am.setStreamVolume(
-					AudioManager.STREAM_RING,
-					ringLevel,
-					0);
-			
-			am.setStreamVolume(
-					AudioManager.STREAM_VOICE_CALL,
-					voiceCallLevel,
-					0);
-			
-	}
+        return "desconhecido";
+    }
+
+    public static void resetAudioLevels(Context ctx) {
+        AudioManager am =
+                (AudioManager) ctx.getSystemService(Context.AUDIO_SERVICE);
+
+        int notificationLevel = (int) (am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION) * 0.8);
+        int musicLevel = (int) (am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * 0.8);
+        int ringLevel = (int) (am.getStreamMaxVolume(AudioManager.STREAM_RING) * 0.8);
+        int voiceCallLevel = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+        am.setStreamVolume(
+                AudioManager.STREAM_MUSIC,
+                musicLevel,
+                0);
+
+        am.setStreamVolume(
+                AudioManager.STREAM_NOTIFICATION,
+                notificationLevel,
+                0);
+
+        am.setStreamVolume(
+                AudioManager.STREAM_RING,
+                ringLevel,
+                0);
+
+        am.setStreamVolume(
+                AudioManager.STREAM_VOICE_CALL,
+                voiceCallLevel,
+                0);
+
+    }
 
 }

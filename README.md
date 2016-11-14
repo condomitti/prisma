@@ -18,6 +18,6 @@ To decline (or end) a call: three single-finger tap on the screen
 
 _This is an ongoing project as there are still a lot of work to be done on it. Some features are still lacking and I pretend to keep working on them. Suggestions are very welcome - and so are pull requests =-)_
 
-If you don't want to build the app yourself there's a compiled/signed version of it: [https://drive.google.com/open?id=0Bzjn7_itK9EdQk5BSFB4VkYzUUE](https://drive.google.com/open?id=0Bzjn7_itK9EdQk5BSFB4VkYzUUE)
+If you don't want to build the app yourself there's a compiled/signed version of it: [https://drive.google.com/open?id=0Bzjn7_itK9EdQ1hDVlVMS2x0dk0](https://drive.google.com/open?id=0Bzjn7_itK9EdQ1hDVlVMS2x0dk0)
 
 Please help us spreading this app to blind individuals!

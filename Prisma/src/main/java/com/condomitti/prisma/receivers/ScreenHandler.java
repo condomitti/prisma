@@ -32,9 +32,9 @@ import com.condomitti.prisma.utils.Tools;
  */
 public class ScreenHandler extends BroadcastReceiver {
 
-	@Override
-	public void onReceive(Context ctx, Intent intent) {
-		if(Tools.phoneState == TelephonyManager.CALL_STATE_IDLE) {
+    @Override
+    public void onReceive(Context ctx, Intent intent) {
+        if (Tools.phoneState == TelephonyManager.CALL_STATE_IDLE) {
 
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 
@@ -51,6 +51,6 @@ public class ScreenHandler extends BroadcastReceiver {
 
         }
 
-	}
+    }
 
 }

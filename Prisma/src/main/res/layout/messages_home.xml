@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -17,51 +16,67 @@
   -->
 
 <com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:gravity="center_horizontal" android:id="@+id/parentLayout">
-	<ScrollView android:layout_height="wrap_content"
-		android:layout_width="match_parent" android:id="@+id/scrollView1">
-		<LinearLayout android:id="@+id/linearLayout1"
-			android:layout_width="match_parent" android:layout_height="wrap_content"
-			android:orientation="vertical" android:gravity="center_horizontal" >
-			<View android:id="@+id/focusRequester" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="1dp" android:layout_height="1dp"/>
+    android:id="@+id/parentLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-			<com.condomitti.prisma.widgets.UntouchableButton
-			    android:id="@+id/btnReceivedMessages"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:focusable="true"
-			    android:focusableInTouchMode="true"
-			    android:text="@string/received_messages" />
-			
-			<com.condomitti.prisma.widgets.UntouchableButton
-			    android:id="@+id/btnSentMessages"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:focusable="true"
-			    android:focusableInTouchMode="true"
-			    android:text="@string/sent_messages" />
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-			<com.condomitti.prisma.widgets.UntouchableButton
-			    android:id="@+id/btnSendSMS"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:focusable="true"
-			    android:focusableInTouchMode="true"
-			    android:text="@string/send_an_sms" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-			<com.condomitti.prisma.widgets.UntouchableButton
-			    android:id="@+id/btnBack"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="@string/back" />
+            <View
+                android:id="@+id/focusRequester"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
-<!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/email" android:layout_height="wrap_content" -->
-<!-- 				android:layout_width="wrap_content" android:id="@+id/btnEmail"/> -->
-<!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/notes" android:layout_height="wrap_content" -->
-<!-- 				android:layout_width="wrap_content" android:id="@+id/btnNotes"/> -->
-<!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/settings" android:layout_height="wrap_content" -->
-<!-- 				android:layout_width="wrap_content" android:id="@+id/btnSettings"/> -->
-		</LinearLayout>
-	</ScrollView>
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnReceivedMessages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/received_messages" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnSentMessages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/sent_messages" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnSendSMS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/send_an_sms" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back" />
+
+            <!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/email" android:layout_height="wrap_content" -->
+            <!-- 				android:layout_width="wrap_content" android:id="@+id/btnEmail"/> -->
+            <!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/notes" android:layout_height="wrap_content" -->
+            <!-- 				android:layout_width="wrap_content" android:id="@+id/btnNotes"/> -->
+            <!-- 			<com.condomitti.prisma.widgets.UntouchableButton android:text="@string/settings" android:layout_height="wrap_content" -->
+            <!-- 				android:layout_width="wrap_content" android:id="@+id/btnSettings"/> -->
+        </LinearLayout>
+    </ScrollView>
 </com.condomitti.prisma.widgets.CustomLinearLayout>

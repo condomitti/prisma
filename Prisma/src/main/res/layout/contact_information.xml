@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -17,29 +16,61 @@
   -->
 
 <com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="vertical" android:gravity="center_horizontal" android:id="@+id/parentLayout">
-	<View android:id="@+id/focusRequester" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="1dp" android:layout_height="1dp" />
-	<TextView android:layout_height="wrap_content"
-		android:layout_width="match_parent" android:text="TextView"
-		android:gravity="center" android:id="@+id/titleContactInformation"></TextView>
-	<ScrollView android:layout_height="wrap_content" android:id="@+id/scrollView1"
-		android:layout_width="match_parent">
-		<LinearLayout android:id="@+id/linearLayout1"
-			android:layout_width="match_parent" android:layout_height="match_parent"
-			android:orientation="vertical" android:gravity="center_horizontal">
-			<LinearLayout android:layout_height="wrap_content"
-				android:layout_width="match_parent" android:id="@+id/llContactData"
-				android:orientation="vertical"></LinearLayout>
-			<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:text="@string/eedit_contact"
-				android:id="@+id/btnEditContact"/>
-			<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:text="@string/delete_contact"
-				android:id="@+id/btnDeleteContact"/>
-			<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-				android:layout_width="wrap_content" android:text="@string/back"
-				android:id="@+id/btnBack"/>
-		</LinearLayout>
-	</ScrollView>
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/focusRequester"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <TextView
+        android:id="@+id/titleContactInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"></TextView>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llContactData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnEditContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eedit_contact" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnDeleteContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_contact" />
+
+            <com.condomitti.prisma.widgets.UntouchableButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back" />
+        </LinearLayout>
+    </ScrollView>
 </com.condomitti.prisma.widgets.CustomLinearLayout>

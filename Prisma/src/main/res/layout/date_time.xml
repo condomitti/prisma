@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -17,18 +16,40 @@
   -->
 
 <com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="vertical" android:gravity="center_horizontal" android:id="@+id/parentLayout">
-	<View android:id="@+id/focusRequester" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="1dp" android:layout_height="1dp" />
-	<TextView android:layout_width="wrap_content" android:text="TextView"
-		android:id="@+id/titleDateTime" android:layout_height="wrap_content"></TextView>
-	<com.condomitti.prisma.widgets.UntouchableButton
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:id="@+id/btnTime" android:text="@string/time" />
-	<com.condomitti.prisma.widgets.UntouchableButton
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:id="@+id/btnDate" android:text="@string/date" />
-	<com.condomitti.prisma.widgets.UntouchableButton
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:id="@+id/btnBack" android:text="@string/back" />
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/focusRequester"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <TextView
+        android:id="@+id/titleDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"></TextView>
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back" />
 </com.condomitti.prisma.widgets.CustomLinearLayout>

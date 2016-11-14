@@ -18,10 +18,11 @@
 package com.condomitti.prisma;
 
 public class GeneralExec {
-	public void exec(){
-		
-	}
-	public GeneralExec getInstance(){
-		return this;
-	}
+    public void exec() {
+
+    }
+
+    public GeneralExec getInstance() {
+        return this;
+    }
 }

@@ -29,7 +29,7 @@ public class TouchListenerWithCountDown implements View.OnTouchListener {
     private AccurateCountDownTimer timer;
 
 
-    public TouchListenerWithCountDown(CountDownHandler handler , int endTimeout){
+    public TouchListenerWithCountDown(CountDownHandler handler, int endTimeout) {
 
 
         this.handler = handler;
@@ -40,7 +40,7 @@ public class TouchListenerWithCountDown implements View.OnTouchListener {
 
     }
 
-    public void setupTimer(){
+    public void setupTimer() {
         timer = new AccurateCountDownTimer(endTimeout, 200) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -61,9 +61,9 @@ public class TouchListenerWithCountDown implements View.OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        if( event.getAction() == MotionEvent.ACTION_UP ){
+        if (event.getAction() == MotionEvent.ACTION_UP) {
             counter++;
-            Log.i("[PRISMA]","ACTION_UP... touched " + counter + " times.");
+            Log.i("[PRISMA]", "ACTION_UP... touched " + counter + " times.");
             timer.cancel();
             timer.start();
         }
@@ -71,8 +71,9 @@ public class TouchListenerWithCountDown implements View.OnTouchListener {
         return false;
     }
 
-    public interface CountDownHandler{
+    public interface CountDownHandler {
         void execute(int count);
+
         void onTick(int count);
     }
 

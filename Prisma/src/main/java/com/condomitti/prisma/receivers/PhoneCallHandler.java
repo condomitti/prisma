@@ -43,8 +43,8 @@ import java.lang.reflect.Method;
 
 public class PhoneCallHandler extends BroadcastReceiver {
 
-	private static WindowManager wm;
-	private static LinearLayout ly;
+    private static WindowManager wm;
+    private static LinearLayout ly;
     private Context ctx;
 
     /**
@@ -52,20 +52,20 @@ public class PhoneCallHandler extends BroadcastReceiver {
      * 2 touches = catch he call (after 1.5 second)
      * 3 touches = declines the call (immediately)
      */
-    private TouchListenerWithCountDown touchListener = new TouchListenerWithCountDown(new TouchListenerWithCountDown.CountDownHandler(){
+    private TouchListenerWithCountDown touchListener = new TouchListenerWithCountDown(new TouchListenerWithCountDown.CountDownHandler() {
         @Override
         public void execute(int count) {
 
-            if( count == 2 ){
+            if (count == 2) {
 
-                if( Tools.phoneState == TelephonyManager.CALL_STATE_RINGING ){
-                    Log.i("[PRISMA]","Touched 2 times!!");
+                if (Tools.phoneState == TelephonyManager.CALL_STATE_RINGING) {
+                    Log.i("[PRISMA]", "Touched 2 times!!");
                     answerCall();
                 }
 
 
-            }else if( count >= 3 ){
-                if( Tools.phoneState == TelephonyManager.CALL_STATE_OFFHOOK ) {
+            } else if (count >= 3) {
+                if (Tools.phoneState == TelephonyManager.CALL_STATE_OFFHOOK) {
                     Log.i("[PRISMA]", "Touched 3+ times!!");
                     disconnectCall();
                 }
@@ -76,39 +76,39 @@ public class PhoneCallHandler extends BroadcastReceiver {
 
         @Override
         public void onTick(int count) {
-            if( Tools.phoneState == TelephonyManager.CALL_STATE_OFFHOOK && count >= 3) {
+            if (Tools.phoneState == TelephonyManager.CALL_STATE_OFFHOOK && count >= 3) {
                 Log.i("[PRISMA]", "Touched 3+ times!!");
 
                 disconnectCall();
             }
         }
-    }, 1500 );
+    }, 1500);
 
 
-	@Override
-	public void onReceive(final Context context, final Intent intent) {
+    @Override
+    public void onReceive(final Context context, final Intent intent) {
 
         //What's the current state of the phone (ringing, off hook, idle)?
-		String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-		Log.i("[PRISMA]","Incoming state: " + state);
+        String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+        Log.i("[PRISMA]", "Incoming state: " + state);
         this.ctx = context;
 
         if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)
-				|| state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                || state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
 
             //If phone is ringing we need to add the overlay over native phone app so that user can control the call state
             addInvitePopup();
 
-		}
+        }
 
-	}
+    }
 
-	public static void removeCallHandlerPopup() {
-		if (Tools.callHandlerLlRef != null) {
-			wm.removeView(Tools.callHandlerLlRef);
-			Tools.callHandlerLlRef = null;
-		}
-	}
+    public static void removeCallHandlerPopup() {
+        if (Tools.callHandlerLlRef != null) {
+            wm.removeView(Tools.callHandlerLlRef);
+            Tools.callHandlerLlRef = null;
+        }
+    }
 
 //    /**
 //     * soundBeep() notifies user that a call was caught (it beeps to signalize that there's currently an ongoing call)
@@ -136,55 +136,55 @@ public class PhoneCallHandler extends BroadcastReceiver {
     /**
      * Adds an overlay to receive touches and control call state based on user interaction
      */
-	public void addInvitePopup() {
+    public void addInvitePopup() {
 
-		if (Tools.callHandlerLlRef == null) {
+        if (Tools.callHandlerLlRef == null) {
 
-			// Get reference to WindowManager
-			wm = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
+            // Get reference to WindowManager
+            wm = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
 
-			// Sets layoutparams for WindowManager
-			WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT,
-					WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
-							| WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                            0, PixelFormat.OPAQUE);
-			// params.x = 250;
-			params.height = LayoutParams.MATCH_PARENT;
-			params.width = LayoutParams.MATCH_PARENT;
-			params.format = PixelFormat.OPAQUE;
+            // Sets layoutparams for WindowManager
+            WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
+                            | WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                    0, PixelFormat.OPAQUE);
+            // params.x = 250;
+            params.height = LayoutParams.MATCH_PARENT;
+            params.width = LayoutParams.MATCH_PARENT;
+            params.format = PixelFormat.OPAQUE;
 
-			params.gravity = Gravity.CENTER;
+            params.gravity = Gravity.CENTER;
 
-			params.setTitle("Atendendo ligação");
+            params.setTitle("Atendendo ligação");
 
-			ly = new LinearLayout(ctx);
-			ly.setOrientation(LinearLayout.VERTICAL);
-			ly.setGravity(Gravity.CENTER);
+            ly = new LinearLayout(ctx);
+            ly.setOrientation(LinearLayout.VERTICAL);
+            ly.setGravity(Gravity.CENTER);
 
-     		ly.setOnTouchListener( touchListener );
-
-
-			TextView tv = new TextView(ctx);
-			tv.setText("TOQUE NA TELA 2 VEZES PARA ATENDER A LIGAÇÃO, OU 3 VEZES PARA IGNORÁ-LA");
-			tv.setTextColor(Color.WHITE);
-			tv.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-			LinearLayout.LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-			p.gravity = Gravity.CENTER;
-			tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
-			tv.setLayoutParams(p);
-			tv.setTypeface(null, Typeface.BOLD);
-			ly.addView(tv);
-			ly.setFocusable(true);
-			ly.requestFocus();
-			wm.addView(ly, params);
-
-			Tools.callHandlerLlRef = ly;
-		}
-	}
+            ly.setOnTouchListener(touchListener);
 
 
-	private void answerCall() {
+            TextView tv = new TextView(ctx);
+            tv.setText("TOQUE NA TELA 2 VEZES PARA ATENDER A LIGAÇÃO, OU 3 VEZES PARA IGNORÁ-LA");
+            tv.setTextColor(Color.WHITE);
+            tv.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            LinearLayout.LayoutParams p = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            p.gravity = Gravity.CENTER;
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            tv.setLayoutParams(p);
+            tv.setTypeface(null, Typeface.BOLD);
+            ly.addView(tv);
+            ly.setFocusable(true);
+            ly.requestFocus();
+            wm.addView(ly, params);
+
+            Tools.callHandlerLlRef = ly;
+        }
+    }
+
+
+    private void answerCall() {
 
         try {
             try {
@@ -206,8 +206,6 @@ public class PhoneCallHandler extends BroadcastReceiver {
             }
         } finally {
         }
-
-
 
 
     }

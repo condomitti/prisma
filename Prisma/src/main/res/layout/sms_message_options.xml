@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -17,31 +16,46 @@
   -->
 
 <com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="vertical" android:gravity="center_horizontal" android:id="@+id/parentLayout">
-	<View android:id="@+id/focusRequester" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="1dp" android:layout_height="1dp" />
-	<TextView android:layout_width="wrap_content" android:text=""
-		android:id="@+id/titleContactTelephoneOptions" android:layout_height="wrap_content"></TextView>
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-	<com.condomitti.prisma.widgets.UntouchableButton
-	    android:id="@+id/btnReadMessage"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/read_message" />
+    <View
+        android:id="@+id/focusRequester"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
-	<com.condomitti.prisma.widgets.UntouchableButton
-	    android:id="@+id/btnReplyMessage"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/reply_message" />
-	
-	<com.condomitti.prisma.widgets.UntouchableButton
-	    android:id="@+id/btnDeleteMessage"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/delete_message" />
+    <TextView
+        android:id="@+id/titleContactTelephoneOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""></TextView>
 
-	<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:text="@string/cancel"
-		android:id="@+id/btnCancel"/>
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnReadMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/read_message" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnReplyMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reply_message" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnDeleteMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_message" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel" />
 </com.condomitti.prisma.widgets.CustomLinearLayout>

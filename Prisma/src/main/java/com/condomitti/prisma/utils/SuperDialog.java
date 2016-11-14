@@ -32,97 +32,96 @@ import com.condomitti.prisma.R;
 
 public class SuperDialog extends Dialog {
 
-	boolean gonnaPerformAction;
-	ArrayList<View> dialogFocusables;
+    boolean gonnaPerformAction;
+    ArrayList<View> dialogFocusables;
 
-	
-	
-	public SuperDialog(Context context) {
-		super(context);
-	}
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		loadTouchables(findViewById(R.id.parentLayout));
-	}
-	
-	protected void loadTouchables() {
-		View parent = findViewById(R.id.parentLayout);
-		dialogFocusables = parent.getFocusables(View.FOCUS_DOWN);
-		Log.i("PRISMA", "[Dialog] Focusables: " + dialogFocusables.size());
-	}
-	
-	protected void loadTouchables(View parent, View... extras) {
-		dialogFocusables = parent.getFocusables(View.FOCUS_DOWN);
-		for(View v : extras){
-			dialogFocusables.addAll(v.getFocusables(View.FOCUS_DOWN));
-		}
-		Log.i("PRISMA", "[Dialog] Focusables: " + dialogFocusables.size());
-	}
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public SuperDialog(Context context) {
+        super(context);
+    }
 
-		switch (keyCode) {
-		case KeyEvent.KEYCODE_BACK:
-		case KeyEvent.KEYCODE_MENU:
-		case KeyEvent.KEYCODE_SEARCH:
-		case KeyEvent.KEYCODE_CAMERA:
-		case KeyEvent.KEYCODE_POWER:
-			return true;
-		case KeyEvent.KEYCODE_VOLUME_DOWN:
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        loadTouchables(findViewById(R.id.parentLayout));
+    }
 
-			changeFocus(View.FOCUS_DOWN);
+    protected void loadTouchables() {
+        View parent = findViewById(R.id.parentLayout);
+        dialogFocusables = parent.getFocusables(View.FOCUS_DOWN);
+        Log.i("PRISMA", "[Dialog] Focusables: " + dialogFocusables.size());
+    }
 
-			return true;
+    protected void loadTouchables(View parent, View... extras) {
+        dialogFocusables = parent.getFocusables(View.FOCUS_DOWN);
+        for (View v : extras) {
+            dialogFocusables.addAll(v.getFocusables(View.FOCUS_DOWN));
+        }
+        Log.i("PRISMA", "[Dialog] Focusables: " + dialogFocusables.size());
+    }
 
-		case KeyEvent.KEYCODE_VOLUME_UP:
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-			changeFocus(View.FOCUS_UP);
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+            case KeyEvent.KEYCODE_MENU:
+            case KeyEvent.KEYCODE_SEARCH:
+            case KeyEvent.KEYCODE_CAMERA:
+            case KeyEvent.KEYCODE_POWER:
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
 
-	private void changeFocus(int direction) {
-		int focused = getCurrentFocused();
+                changeFocus(View.FOCUS_DOWN);
 
-		if (direction == View.FOCUS_DOWN) {
-			if (focused < dialogFocusables.size() - 1) {
-				dialogFocusables.get(focused + 1).requestFocus();
-			}
-		} else {
-			if (focused > 1) {
-				dialogFocusables.get(focused - 1).requestFocus();
-			}
-		}
-	}
+                return true;
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
 
-		
-		if (event.getPointerCount() == 2) {
-			gonnaPerformAction = true;
-		} else if (event.getAction() == MotionEvent.ACTION_UP
-				&& event.getPointerCount() == 1 && gonnaPerformAction) {
-			getCurrentFocus().performClick();
-			gonnaPerformAction = false;
-		}
+                changeFocus(View.FOCUS_UP);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
-		return true;
-	}
+    private void changeFocus(int direction) {
+        int focused = getCurrentFocused();
 
-	private int getCurrentFocused() {
-		int i = 0;
-		for (View v : dialogFocusables) {
-			if (v.isFocused())
-				return i;
-			i++;
-		}
+        if (direction == View.FOCUS_DOWN) {
+            if (focused < dialogFocusables.size() - 1) {
+                dialogFocusables.get(focused + 1).requestFocus();
+            }
+        } else {
+            if (focused > 1) {
+                dialogFocusables.get(focused - 1).requestFocus();
+            }
+        }
+    }
 
-		return i;
-	}
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+
+        if (event.getPointerCount() == 2) {
+            gonnaPerformAction = true;
+        } else if (event.getAction() == MotionEvent.ACTION_UP
+                && event.getPointerCount() == 1 && gonnaPerformAction) {
+            getCurrentFocus().performClick();
+            gonnaPerformAction = false;
+        }
+
+        return true;
+    }
+
+    private int getCurrentFocused() {
+        int i = 0;
+        for (View v : dialogFocusables) {
+            if (v.isFocused())
+                return i;
+            i++;
+        }
+
+        return i;
+    }
 
 }

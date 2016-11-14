@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -21,22 +20,20 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dip"
- >
+    android:padding="20dip">
 
     <TextView
         android:id="@+id/txtDialogText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" >
-    </TextView>
+        android:text="TextView"></TextView>
 
     <com.condomitti.prisma.widgets.CustomLinearLayout
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <View
             android:id="@+id/focusRequester"

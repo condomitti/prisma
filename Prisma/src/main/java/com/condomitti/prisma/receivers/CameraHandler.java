@@ -32,26 +32,26 @@ import com.condomitti.prisma.UnlockScreen;
  * CameraHandler used to prevent camera app being called and kept above Prisma when camera button (present on some devices) is pressed.
  */
 public class CameraHandler extends BroadcastReceiver {
-	Intent i;
-	Context context;
-	
-	@SuppressLint("HandlerLeak")
-	Handler h = new Handler(){
-		public void handleMessage(android.os.Message msg) {
+    Intent i;
+    Context context;
+
+    @SuppressLint("HandlerLeak")
+    Handler h = new Handler() {
+        public void handleMessage(android.os.Message msg) {
 
             //Calls UnlockScreen whenever Camera app is called
-			i = new Intent(context, UnlockScreen.class);
-			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			context.startActivity(i);
-		}
-	};
-	
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		this.context = context;
-		Log.i("[PRISMA]", "CameraHandler being called");
-		Message msg = new Message();
-		h.sendMessageDelayed(msg, 800);
-	}
+            i = new Intent(context, UnlockScreen.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            context.startActivity(i);
+        }
+    };
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        this.context = context;
+        Log.i("[PRISMA]", "CameraHandler being called");
+        Message msg = new Message();
+        h.sendMessageDelayed(msg, 800);
+    }
 
 }

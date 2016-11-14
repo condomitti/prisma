@@ -31,112 +31,112 @@ import com.condomitti.prisma.GeneralExec;
 import com.condomitti.prisma.R;
 
 public class SpokenDialog extends SuperActivity implements OnClickListener {
-	public static final int RESULT_YES = 123455432;
-	public static final int RESULT_NO = 123455433;
+    public static final int RESULT_YES = 123455432;
+    public static final int RESULT_NO = 123455433;
     SuperDialog dialog;
 
-	CountDownTimer cdtCloser = new CountDownTimer(5000, 2000) {
+    CountDownTimer cdtCloser = new CountDownTimer(5000, 2000) {
 
-		@Override
-		public void onTick(long millisUntilFinished) {
+        @Override
+        public void onTick(long millisUntilFinished) {
 
-		}
+        }
 
-		@Override
-		public void onFinish() {
-			finish();
-		}
-	};
+        @Override
+        public void onFinish() {
+            finish();
+        }
+    };
 
-	Button btnYes, btnNo = null;
+    Button btnYes, btnNo = null;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		Tools.setScreenSettings(this);
-		makeUpDialog(savedInstanceState);
+        Tools.setScreenSettings(this);
+        makeUpDialog(savedInstanceState);
 
-	}
+    }
 
-	private void makeUpDialog(Bundle savedInstanceState) {
+    private void makeUpDialog(Bundle savedInstanceState) {
 
         String dialogMessage = getIntent()
-				.getStringExtra("prismaDialogMessage");
+                .getStringExtra("prismaDialogMessage");
         boolean prismaDialogHasCloseTimer = getIntent().getBooleanExtra(
-				"prismaDialogHasCloseTimer", false);
+                "prismaDialogHasCloseTimer", false);
 
         setContentView(R.layout.dialog);
         super.loadTouchables();
 
-		TextView tv = (TextView) findViewById(R.id.txtDialogText);
-		tv.setFocusable(true);
-		tv.setText(dialogMessage);
-		tv.requestFocus();
+        TextView tv = (TextView) findViewById(R.id.txtDialogText);
+        tv.setFocusable(true);
+        tv.setText(dialogMessage);
+        tv.requestFocus();
 
-		btnYes = (Button) findViewById(R.id.btnDialogYes);
-		btnNo = (Button) findViewById(R.id.btnDialogNo);
+        btnYes = (Button) findViewById(R.id.btnDialogYes);
+        btnNo = (Button) findViewById(R.id.btnDialogNo);
 
-		btnYes.setOnClickListener(this);
-		btnNo.setOnClickListener(this);
-		btnYes.setOnFocusChangeListener(Tools.pfListenerQueue);
-		btnNo.setOnFocusChangeListener(Tools.pfListenerQueue);
+        btnYes.setOnClickListener(this);
+        btnNo.setOnClickListener(this);
+        btnYes.setOnFocusChangeListener(Tools.pfListenerQueue);
+        btnNo.setOnFocusChangeListener(Tools.pfListenerQueue);
 
 
-		if (prismaDialogHasCloseTimer) {
-			GeneralExec exec = new GeneralExec() {
-				@Override
-				public void exec() {
-					cdtCloser.start();
-				}
-			};
-			Tools.speak(dialogMessage, false, false, exec, false);
-		} else {
-			Tools.speak(dialogMessage, true);
-		}
-	}
+        if (prismaDialogHasCloseTimer) {
+            GeneralExec exec = new GeneralExec() {
+                @Override
+                public void exec() {
+                    cdtCloser.start();
+                }
+            };
+            Tools.speak(dialogMessage, false, false, exec, false);
+        } else {
+            Tools.speak(dialogMessage, true);
+        }
+    }
 
-	private void makeUpDialog2(Bundle savedInstanceState) {
+    private void makeUpDialog2(Bundle savedInstanceState) {
 
         destroyDialog();
         dialog = new SuperDialog(this);
         String dialogMessage = getIntent()
-				.getStringExtra("prismaDialogMessage");
+                .getStringExtra("prismaDialogMessage");
         boolean prismaDialogHasCloseTimer = getIntent().getBooleanExtra(
-				"prismaDialogHasCloseTimer", false);
+                "prismaDialogHasCloseTimer", false);
 
-		dialog.setContentView(R.layout.dialog);
-		dialog.setCancelable(false);
-		dialog.setTitle("Confirmar ação");
+        dialog.setContentView(R.layout.dialog);
+        dialog.setCancelable(false);
+        dialog.setTitle("Confirmar ação");
 
-		TextView tv = (TextView) dialog.findViewById(R.id.txtDialogText);
-		tv.setFocusable(true);
-		tv.setText(dialogMessage);
-		tv.requestFocus();
+        TextView tv = (TextView) dialog.findViewById(R.id.txtDialogText);
+        tv.setFocusable(true);
+        tv.setText(dialogMessage);
+        tv.requestFocus();
 
-		btnYes = (Button) dialog.findViewById(R.id.btnDialogYes);
-		btnNo = (Button) dialog.findViewById(R.id.btnDialogNo);
+        btnYes = (Button) dialog.findViewById(R.id.btnDialogYes);
+        btnNo = (Button) dialog.findViewById(R.id.btnDialogNo);
 
-		btnYes.setOnClickListener(this);
-		btnNo.setOnClickListener(this);
-		btnYes.setOnFocusChangeListener(Tools.pfListenerQueue);
-		btnNo.setOnFocusChangeListener(Tools.pfListenerQueue);
+        btnYes.setOnClickListener(this);
+        btnNo.setOnClickListener(this);
+        btnYes.setOnFocusChangeListener(Tools.pfListenerQueue);
+        btnNo.setOnFocusChangeListener(Tools.pfListenerQueue);
 
 
-		dialog.show();
+        dialog.show();
 
-		if (prismaDialogHasCloseTimer) {
-			GeneralExec exec = new GeneralExec() {
-				@Override
-				public void exec() {
-					cdtCloser.start();
-				}
-			};
-			Tools.speak(dialogMessage, false, false, exec, false);
-		} else {
-			Tools.speak(dialogMessage, true);
-		}
-	}
+        if (prismaDialogHasCloseTimer) {
+            GeneralExec exec = new GeneralExec() {
+                @Override
+                public void exec() {
+                    cdtCloser.start();
+                }
+            };
+            Tools.speak(dialogMessage, false, false, exec, false);
+        } else {
+            Tools.speak(dialogMessage, true);
+        }
+    }
 
     @Override
     protected void onStop() {
@@ -145,47 +145,47 @@ public class SpokenDialog extends SuperActivity implements OnClickListener {
 
     }
 
-    private void destroyDialog(){
-        if(dialog != null){
+    private void destroyDialog() {
+        if (dialog != null) {
             dialog.dismiss();
             dialog = null;
         }
     }
 
     @Override
-	public void onClick(View v) {
-		Tools.speak("Selecionado " + ((Button) v).getText().toString(), false);
+    public void onClick(View v) {
+        Tools.speak("Selecionado " + ((Button) v).getText().toString(), false);
 
-		Intent data = new Intent();
-		data.putExtra("prismaDialogReqCode",
-				getIntent().getExtras().getInt("prismaDialogReqCode", -1));
+        Intent data = new Intent();
+        data.putExtra("prismaDialogReqCode",
+                getIntent().getExtras().getInt("prismaDialogReqCode", -1));
 
-		switch (v.getId()) {
-		case R.id.btnDialogYes:
-			setResult(RESULT_YES, data);
-			break;
-		case R.id.btnDialogNo:
-			setResult(RESULT_NO, data);
-			break;
-		}
+        switch (v.getId()) {
+            case R.id.btnDialogYes:
+                setResult(RESULT_YES, data);
+                break;
+            case R.id.btnDialogNo:
+                setResult(RESULT_NO, data);
+                break;
+        }
 
-		finish();
-	}
+        finish();
+    }
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		switch (keyCode) {
-		case KeyEvent.KEYCODE_BACK:
-		case KeyEvent.KEYCODE_MENU:
-		case KeyEvent.KEYCODE_CAMERA:
-		case KeyEvent.KEYCODE_SEARCH:
-			return false;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+            case KeyEvent.KEYCODE_MENU:
+            case KeyEvent.KEYCODE_CAMERA:
+            case KeyEvent.KEYCODE_SEARCH:
+                return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return true;
-	}
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 }

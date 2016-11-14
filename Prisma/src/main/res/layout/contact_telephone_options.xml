@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -17,18 +16,40 @@
   -->
 
 <com.condomitti.prisma.widgets.CustomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="vertical" android:gravity="center_horizontal" android:id="@+id/parentLayout">
-	<View android:id="@+id/focusRequester" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="1dp" android:layout_height="1dp" />
-	<TextView android:layout_width="wrap_content" android:text=""
-		android:id="@+id/titleContactTelephoneOptions" android:layout_height="wrap_content"></TextView>
-	<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:id="@+id/btnCallThisNumber"
-		android:text="@string/call_this_number"/>
-	<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:text="@string/send_sms_to_this_number"
-		android:id="@+id/btnSendSMSToThisNumber"/>
-	<com.condomitti.prisma.widgets.UntouchableButton android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:text="@string/cancel"
-		android:id="@+id/btnCancel"/>
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/focusRequester"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <TextView
+        android:id="@+id/titleContactTelephoneOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""></TextView>
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnCallThisNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/call_this_number" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnSendSMSToThisNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_sms_to_this_number" />
+
+    <com.condomitti.prisma.widgets.UntouchableButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel" />
 </com.condomitti.prisma.widgets.CustomLinearLayout>

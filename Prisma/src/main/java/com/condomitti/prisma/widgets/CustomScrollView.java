@@ -24,16 +24,17 @@ import android.widget.LinearLayout;
 
 public class CustomScrollView extends LinearLayout {
 
-	public CustomScrollView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-	public CustomScrollView(Context context) {
-		super(context);
-	}
-	
+    public CustomScrollView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		return true;
-	}
-	
+    public CustomScrollView(Context context) {
+        super(context);
+    }
+
+
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return true;
+    }
+
 }

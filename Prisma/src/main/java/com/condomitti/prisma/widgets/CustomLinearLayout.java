@@ -24,16 +24,19 @@ import android.widget.LinearLayout;
 
 public class CustomLinearLayout extends LinearLayout {
 
-	public CustomLinearLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-	public CustomLinearLayout(Context context) {
-		super(context);
-	}
-	
+    public CustomLinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		return true;
-	};
-	
+    public CustomLinearLayout(Context context) {
+        super(context);
+    }
+
+
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return true;
+    }
+
+    ;
+
 }

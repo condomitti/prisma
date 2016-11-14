@@ -29,127 +29,123 @@ import android.widget.Button;
 import com.condomitti.prisma.utils.SuperActivity;
 import com.condomitti.prisma.utils.Tools;
 
-public class MessagesHome extends SuperActivity implements OnClickListener{
+public class MessagesHome extends SuperActivity implements OnClickListener {
 
-	String toSendNumber;
-	String toSendMessage;
-	
-	Button btnReadInboxMessages = null;
-	Button btnReadOutboxMessages = null;
-	Button btnSendSMS = null;
-	Button btnBack = null;
-	
-	
+    String toSendNumber;
+    String toSendMessage;
+
+    Button btnReadInboxMessages = null;
+    Button btnReadOutboxMessages = null;
+    Button btnSendSMS = null;
+    Button btnBack = null;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        
+
+
         Tools.setScreenSettings(this);
-        
+
         makeUpScreen();
         getWarnings();
     }
-    
-    public void getWarnings(){
-    	if(getIntent().hasExtra("warnings")){
-    		for(String s : getIntent().getStringArrayListExtra("warnings")){
-    			Tools.speak(s, true);
-    		}
-    	}
+
+    public void getWarnings() {
+        if (getIntent().hasExtra("warnings")) {
+            for (String s : getIntent().getStringArrayListExtra("warnings")) {
+                Tools.speak(s, true);
+            }
+        }
     }
-    
-    public void makeUpScreen(){
-    	setContentView(R.layout.messages_home);
-    	super.loadTouchables();
-    	
+
+    public void makeUpScreen() {
+        setContentView(R.layout.messages_home);
+        super.loadTouchables();
+
     	/*
     	 * Retrieves references
     	 */
-    	btnBack = (Button)findViewById(R.id.btnBack);
-    	btnReadInboxMessages = (Button)findViewById(R.id.btnReceivedMessages);
-    	btnReadOutboxMessages = (Button)findViewById(R.id.btnSentMessages);
-    	btnSendSMS = (Button)findViewById(R.id.btnSendSMS);
+        btnBack = (Button) findViewById(R.id.btnBack);
+        btnReadInboxMessages = (Button) findViewById(R.id.btnReceivedMessages);
+        btnReadOutboxMessages = (Button) findViewById(R.id.btnSentMessages);
+        btnSendSMS = (Button) findViewById(R.id.btnSendSMS);
     	
     	
     	/*
     	 * Sets Listeners
     	 */
-    	btnBack.setOnClickListener(this);
-    	btnReadInboxMessages.setOnClickListener(this);
-    	btnReadOutboxMessages.setOnClickListener(this);
-    	btnSendSMS.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
+        btnReadInboxMessages.setOnClickListener(this);
+        btnReadOutboxMessages.setOnClickListener(this);
+        btnSendSMS.setOnClickListener(this);
 
 
-    	
     }
-    
+
     @Override
     public void onClick(View v) {
-    	
-    	Tools.speak("Selecionado " + ((Button)v).getText().toString(), false);
-    
-    	Intent i = null;
- 
-    	switch (v.getId()) {
-    	case R.id.btnReceivedMessages:
-    		i = new Intent(this, MessagesList.class);
-    		startActivity(i);
-    		break;
-		case R.id.btnSentMessages:
-			Tools.speak("Função ainda não implementada", true);
-			break;
-		case R.id.btnSendSMS:
-			Tools.speak(getString(R.string.type_the_number), true);
-			i = new Intent(this, NumericKeyboard.class);
-			startActivityForResult(i,Tools.DISPLAY_NUMERIC_KEYBOARD);
-			break;
-		case R.id.btnBack:
-			finish();
-			break;
-		}
+
+        Tools.speak("Selecionado " + ((Button) v).getText().toString(), false);
+
+        Intent i = null;
+
+        switch (v.getId()) {
+            case R.id.btnReceivedMessages:
+                i = new Intent(this, MessagesList.class);
+                startActivity(i);
+                break;
+            case R.id.btnSentMessages:
+                Tools.speak("Função ainda não implementada", true);
+                break;
+            case R.id.btnSendSMS:
+                Tools.speak(getString(R.string.type_the_number), true);
+                i = new Intent(this, NumericKeyboard.class);
+                startActivityForResult(i, Tools.DISPLAY_NUMERIC_KEYBOARD);
+                break;
+            case R.id.btnBack:
+                finish();
+                break;
+        }
     }
-    
-      
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	super.onActivityResult(requestCode, resultCode, data);
-    	
-    	switch (requestCode) {
-		
-    	case Tools.DISPLAY_NUMERIC_KEYBOARD:
-    		if(resultCode == RESULT_OK){
-    			
-    			Tools.speak(getString(R.string.number_chosen_now_type_message), true);
-    			toSendNumber = data.getStringExtra("typedNumber");
-    			Intent i = new Intent(this, WordMaker.class);
-    			startActivityForResult(i, Tools.DISPLAY_WORD_MAKER);
-    			
-    		}
-    		
-    		break;
-		case Tools.DISPLAY_WORD_MAKER:
-			if(resultCode == RESULT_OK){
-				
-				toSendMessage = data.getStringExtra("typedString");
-				Tools.speak(getString(R.string.message_was_typed_now_sending), true);
+        super.onActivityResult(requestCode, resultCode, data);
 
-				PendingIntent pi = PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), 0);
-				SmsManager sm = SmsManager.getDefault();
-				sm.sendTextMessage(toSendNumber, null, toSendMessage, pi, null);
-				
-			}
+        switch (requestCode) {
 
-			break;
-		}
+            case Tools.DISPLAY_NUMERIC_KEYBOARD:
+                if (resultCode == RESULT_OK) {
+
+                    Tools.speak(getString(R.string.number_chosen_now_type_message), true);
+                    toSendNumber = data.getStringExtra("typedNumber");
+                    Intent i = new Intent(this, WordMaker.class);
+                    startActivityForResult(i, Tools.DISPLAY_WORD_MAKER);
+
+                }
+
+                break;
+            case Tools.DISPLAY_WORD_MAKER:
+                if (resultCode == RESULT_OK) {
+
+                    toSendMessage = data.getStringExtra("typedString");
+                    Tools.speak(getString(R.string.message_was_typed_now_sending), true);
+
+                    PendingIntent pi = PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), 0);
+                    SmsManager sm = SmsManager.getDefault();
+                    sm.sendTextMessage(toSendNumber, null, toSendMessage, pi, null);
+
+                }
+
+                break;
+        }
     }
-    
-	
-	
 
-	
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return true;
-	}
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 }

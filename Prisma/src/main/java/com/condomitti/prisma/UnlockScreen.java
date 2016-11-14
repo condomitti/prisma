@@ -94,7 +94,7 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
 
     };
     @SuppressLint("HandlerLeak")
-    private Handler h = new Handler(){
+    private Handler h = new Handler() {
         public void handleMessage(android.os.Message msg) {
 
             switch (msg.what) {
@@ -147,6 +147,7 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
     protected void onResume() {
         super.onResume();
 
+//        checkPermissions();
         mp = new MediaPlayer();
         AssetFileDescriptor afd = getResources().openRawResourceFd(
                 R.raw.unlocker);
@@ -222,8 +223,8 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
         }
     }
 
-    public void checkAirplaneMode(){
-        if(Settings.System.getInt(getContentResolver(),Settings.System.AIRPLANE_MODE_ON, 0) == 1){
+    public void checkAirplaneMode() {
+        if (Settings.System.getInt(getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0) == 1) {
             warnings.add(getResources().getString(R.string.airplane_mode_is_on));
         }
     }
@@ -344,10 +345,10 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
             i.setClassName("com.android.settings",
                     "com.android.settings.Settings");
             startActivity(i);
-        }else if( requestCode == RESULT_MANAGE_OVERLAY_PERMISSION ){
+        } else if (requestCode == RESULT_MANAGE_OVERLAY_PERMISSION) {
 
-            if( resultCode != RESULT_OK ){
-                Log.i("[PRISMA]","WARNING: Permission for MANAGE_OVERLAY not granted");
+            if (resultCode != RESULT_OK) {
+                Log.i("[PRISMA]", "WARNING: Permission for MANAGE_OVERLAY not granted");
             }
 
         }
@@ -383,11 +384,11 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
-        switch (requestCode){
+        switch (requestCode) {
             case Tools.INITIAL_REQUESTS: {
 
-                Log.i("[PRISMA]","Permissions: " + Arrays.toString(permissions));
-                Log.i("[PRISMA]","GRANTS: " + Arrays.toString(grantResults));
+                Log.i("[PRISMA]", "Permissions: " + Arrays.toString(permissions));
+                Log.i("[PRISMA]", "GRANTS: " + Arrays.toString(grantResults));
 
                 checkBatteryLevel();
                 checkAirplaneMode();
@@ -412,14 +413,16 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
         checkForSMS();
 
     }
-    public void checkPermissions(){
-        ActivityCompat.requestPermissions(this,new String[]{ Manifest.permission.READ_SMS, Manifest.permission.SEND_SMS , Manifest.permission.READ_CALL_LOG , Manifest.permission.WRITE_CALL_LOG , Manifest.permission.READ_CONTACTS , Manifest.permission.WRITE_CONTACTS , Manifest.permission.GET_ACCOUNTS}, Tools.INITIAL_REQUESTS);
 
-        if(Build.VERSION.SDK_INT >= 23 && ! Settings.canDrawOverlays(this)){
+    public void checkPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_SMS, Manifest.permission.SEND_SMS, Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS, Manifest.permission.GET_ACCOUNTS}, Tools.INITIAL_REQUESTS);
+
+        if (Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(this)) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent,3333);
+            startActivityForResult(intent, 3333);
         }
     }
+
     public void checkForMissedCalls() {
         if (Tools.getMissedCalls(this)) {
             warnings.add("Existem chamadas perdidas!");
@@ -469,7 +472,7 @@ public class UnlockScreen extends Activity implements OnLongClickListener,
                                 Uri.encode(incomingNumber));
                         Cursor c = getContentResolver()
                                 .query(uri,
-                                        new String[] { android.provider.ContactsContract.Contacts.DISPLAY_NAME },
+                                        new String[]{android.provider.ContactsContract.Contacts.DISPLAY_NAME},
                                         null, null, null);
 
                         if (c != null && c.moveToFirst()) {

@@ -43,210 +43,210 @@ import com.condomitti.prisma.utils.SuperActivity;
 import com.condomitti.prisma.utils.Tools;
 
 public class MissedCalls extends SuperActivity {
-	LinearLayout listMissedCalls = null;
-	Cursor missedCalls = null;
-	boolean loading = true;
-	ArrayList<HashMap<String, String>> callLog = new ArrayList<HashMap<String, String>>();
-	String numberTocall = "";
-	int counter = 0;
+    LinearLayout listMissedCalls = null;
+    Cursor missedCalls = null;
+    boolean loading = true;
+    ArrayList<HashMap<String, String>> callLog = new ArrayList<HashMap<String, String>>();
+    String numberTocall = "";
+    int counter = 0;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Tools.setScreenSettings(this);
-		getMissedCalls();
-		makeUpScreen();
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Tools.setScreenSettings(this);
+        getMissedCalls();
+        makeUpScreen();
+    }
 
-	public void getMissedCalls() {
-		if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
-			missedCalls = getContentResolver().query(CallLog.Calls.CONTENT_URI,
-					null, CallLog.Calls.TYPE + " = ?",
-					new String[]{Integer.toString(CallLog.Calls.MISSED_TYPE)},
-					Calls.DATE + " DESC");
-			if (!missedCalls.moveToFirst()) {
-				Tools.speak(getResources().getString(R.string.noMissedCalls), true);
-				finish();
-			}
-		}
-	}
+    public void getMissedCalls() {
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+            missedCalls = getContentResolver().query(CallLog.Calls.CONTENT_URI,
+                    null, CallLog.Calls.TYPE + " = ?",
+                    new String[]{Integer.toString(CallLog.Calls.MISSED_TYPE)},
+                    Calls.DATE + " DESC");
+            if (!missedCalls.moveToFirst()) {
+                Tools.speak(getResources().getString(R.string.noMissedCalls), true);
+                finish();
+            }
+        }
+    }
 
-	public void makeUpScreen() {
+    public void makeUpScreen() {
 
-		setContentView(R.layout.missed_calls);
+        setContentView(R.layout.missed_calls);
 
-		TextView title = (TextView) findViewById(R.id.txtTitle);
-		title.setText("Chamadas perdidas");
-		title.requestFocus();
+        TextView title = (TextView) findViewById(R.id.txtTitle);
+        title.setText("Chamadas perdidas");
+        title.requestFocus();
 
-		listMissedCalls = (LinearLayout) findViewById(R.id.listMissedCalls);
+        listMissedCalls = (LinearLayout) findViewById(R.id.listMissedCalls);
 
-		TextView tvBack = new TextView(getApplicationContext());
-		tvBack.setText("Voltar");
-		tvBack.setTextAppearance(this, R.style.ListsTextView);
-		tvBack.setFocusable(true);
-		tvBack.setFocusableInTouchMode(true);
-		tvBack.setVisibility(TextView.VISIBLE);
-		tvBack.setOnFocusChangeListener(Tools.pfListenerQueue);
-		tvBack.setOnClickListener(new View.OnClickListener() {
+        TextView tvBack = new TextView(getApplicationContext());
+        tvBack.setText("Voltar");
+        tvBack.setTextAppearance(this, R.style.ListsTextView);
+        tvBack.setFocusable(true);
+        tvBack.setFocusableInTouchMode(true);
+        tvBack.setVisibility(TextView.VISIBLE);
+        tvBack.setOnFocusChangeListener(Tools.pfListenerQueue);
+        tvBack.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Tools.speak("Selecionado voltar", true);
-				finish();
-			}
-		});
-		listMissedCalls.addView(tvBack, counter, new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT));
+            @Override
+            public void onClick(View v) {
+                Tools.speak("Selecionado voltar", true);
+                finish();
+            }
+        });
+        listMissedCalls.addView(tvBack, counter, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
 
-		if (missedCalls != null && missedCalls.moveToFirst()) {
-			do {
-				counter++;
-				HashMap<String, String> m = new HashMap<String, String>();
-				String str = missedCalls.getString(missedCalls
-						.getColumnIndex(Calls.CACHED_NAME));
-				if (str == null)
-					str = Tools.handleNumber(missedCalls.getString(missedCalls
-							.getColumnIndex(Calls.NUMBER)));
-				if (str == null)
-					str = "número privado";
-				str = Tools.getSpokenFormattedDate(new Date(missedCalls
-						.getLong(missedCalls.getColumnIndex(Calls.DATE))))
-						+ " "
+        if (missedCalls != null && missedCalls.moveToFirst()) {
+            do {
+                counter++;
+                HashMap<String, String> m = new HashMap<String, String>();
+                String str = missedCalls.getString(missedCalls
+                        .getColumnIndex(Calls.CACHED_NAME));
+                if (str == null)
+                    str = Tools.handleNumber(missedCalls.getString(missedCalls
+                            .getColumnIndex(Calls.NUMBER)));
+                if (str == null)
+                    str = "número privado";
+                str = Tools.getSpokenFormattedDate(new Date(missedCalls
+                        .getLong(missedCalls.getColumnIndex(Calls.DATE))))
+                        + " "
 //						+ getResources().getString(R.string.minutes)
-						+ " "
-						+ getResources().getString(R.string.call_from)
-						+ " " + str;
-				m.put("_id", Integer.toString(missedCalls.getInt(missedCalls
-						.getColumnIndex(Calls._ID))));
-				m.put("strMissedCall", str);
-				m.put("number", missedCalls.getString(missedCalls
-						.getColumnIndex(Calls.NUMBER)));
-				callLog.add(m);
+                        + " "
+                        + getResources().getString(R.string.call_from)
+                        + " " + str;
+                m.put("_id", Integer.toString(missedCalls.getInt(missedCalls
+                        .getColumnIndex(Calls._ID))));
+                m.put("strMissedCall", str);
+                m.put("number", missedCalls.getString(missedCalls
+                        .getColumnIndex(Calls.NUMBER)));
+                callLog.add(m);
 
-				TextView tv = new TextView(getApplicationContext());
-				tv.setText(str);
-				tv.setFocusable(true);
-				tv.setTextAppearance(this, R.style.ListsTextView);
-				tv.setFocusableInTouchMode(true);
-				tv.setVisibility(TextView.GONE);
-				final String _toSpeak = str;
-				tv.setOnFocusChangeListener(new OnFocusChangeListener() {
+                TextView tv = new TextView(getApplicationContext());
+                tv.setText(str);
+                tv.setFocusable(true);
+                tv.setTextAppearance(this, R.style.ListsTextView);
+                tv.setFocusableInTouchMode(true);
+                tv.setVisibility(TextView.GONE);
+                final String _toSpeak = str;
+                tv.setOnFocusChangeListener(new OnFocusChangeListener() {
 
-					@Override
-					public void onFocusChange(View v, boolean hasFocus) {
-						if (v.isFocused()) {
-							setMissedCallAsNotNew(Integer.parseInt(callLog.get(
-									counter - 1).get("_id")));
-							Log.i("PRISMA",
-									"ID: "
-											+ callLog.get(counter - 1).get(
-													"_id"));
-							Tools.speak(_toSpeak, false);
-						}
-					}
-				});
-				tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (v.isFocused()) {
+                            setMissedCallAsNotNew(Integer.parseInt(callLog.get(
+                                    counter - 1).get("_id")));
+                            Log.i("PRISMA",
+                                    "ID: "
+                                            + callLog.get(counter - 1).get(
+                                            "_id"));
+                            Tools.speak(_toSpeak, false);
+                        }
+                    }
+                });
+                tv.setOnClickListener(new View.OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						if (callLog.get(counter - 1).get("number").trim()
-								.length() == 0) {
-							Tools.speak("Não há como responder à essa chamada de número privado.",true);
-							return;
-						}
-						Tools.speak("Selecionado"
-								+ ((TextView) v).getText().toString(), false);
-						numberTocall = callLog
-								.get(counter - 1).get("number");
-						String s = String.format(
-								getResources().getString(
-										R.string.dialConfirmation), Tools
-										.handleNumber( numberTocall ));
-						Tools.showConfirm(MissedCalls.this, s);
-					}
-				});
-				listMissedCalls.addView(tv, counter,
-						new LinearLayout.LayoutParams(
-								LinearLayout.LayoutParams.MATCH_PARENT,
-								LinearLayout.LayoutParams.WRAP_CONTENT));
+                    @Override
+                    public void onClick(View v) {
+                        if (callLog.get(counter - 1).get("number").trim()
+                                .length() == 0) {
+                            Tools.speak("Não há como responder à essa chamada de número privado.", true);
+                            return;
+                        }
+                        Tools.speak("Selecionado"
+                                + ((TextView) v).getText().toString(), false);
+                        numberTocall = callLog
+                                .get(counter - 1).get("number");
+                        String s = String.format(
+                                getResources().getString(
+                                        R.string.dialConfirmation), Tools
+                                        .handleNumber(numberTocall));
+                        Tools.showConfirm(MissedCalls.this, s);
+                    }
+                });
+                listMissedCalls.addView(tv, counter,
+                        new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT));
 
-			} while (missedCalls.moveToNext());
-		}
+            } while (missedCalls.moveToNext());
+        }
 
-		counter = 0;
-		Tools.speak("Exibindo " + callLog.size() + " chamadas perdidas", true);
+        counter = 0;
+        Tools.speak("Exibindo " + callLog.size() + " chamadas perdidas", true);
 
-		super.loadTouchables();
-	}
+        super.loadTouchables();
+    }
 
-	public void setMissedCallAsNotNew(int _id) {
-		if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
-			ContentValues cv = new ContentValues();
-			cv.put(CallLog.Calls.NEW, 0);
-			getContentResolver().update(CallLog.Calls.CONTENT_URI, cv,
-					CallLog.Calls._ID + " = ? ",
-					new String[]{Integer.toString(_id)});
-			getContentResolver().notifyChange(CallLog.Calls.CONTENT_URI, null);
-		}
-	}
+    public void setMissedCallAsNotNew(int _id) {
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_CALL_LOG) == PackageManager.PERMISSION_GRANTED) {
+            ContentValues cv = new ContentValues();
+            cv.put(CallLog.Calls.NEW, 0);
+            getContentResolver().update(CallLog.Calls.CONTENT_URI, cv,
+                    CallLog.Calls._ID + " = ? ",
+                    new String[]{Integer.toString(_id)});
+            getContentResolver().notifyChange(CallLog.Calls.CONTENT_URI, null);
+        }
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-		switch (requestCode) {
-		case Tools.SHOW_SPOKEN_DIALOG:
-			if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+        switch (requestCode) {
+            case Tools.SHOW_SPOKEN_DIALOG:
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
 
-				if (resultCode == SpokenDialog.RESULT_YES) {
-					Intent i = new Intent(Intent.ACTION_CALL);
-					i.setData(Uri.parse("tel://" + numberTocall));
-					startActivityForResult(i, Tools.CALL_PHONE_ACTIVITY);
-				}
+                    if (resultCode == SpokenDialog.RESULT_YES) {
+                        Intent i = new Intent(Intent.ACTION_CALL);
+                        i.setData(Uri.parse("tel://" + numberTocall));
+                        startActivityForResult(i, Tools.CALL_PHONE_ACTIVITY);
+                    }
 
-			}
-			break;
-		}
-	}
+                }
+                break;
+        }
+    }
 
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return true;
-	}
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 
-	public void changeVisibility(int direction) {
+    public void changeVisibility(int direction) {
 
-		listMissedCalls.getChildAt(counter).setVisibility(View.GONE);
+        listMissedCalls.getChildAt(counter).setVisibility(View.GONE);
 
         if (direction == View.FOCUS_DOWN) {
-			counter++;
-		} else {
-			counter--;
-		}
-		listMissedCalls
-				.getChildAt(counter).setVisibility(View.VISIBLE);
-		listMissedCalls.getChildAt(counter).requestFocus();
+            counter++;
+        } else {
+            counter--;
+        }
+        listMissedCalls
+                .getChildAt(counter).setVisibility(View.VISIBLE);
+        listMissedCalls.getChildAt(counter).requestFocus();
 
-	}
+    }
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-		switch (keyCode) {
-		case KeyEvent.KEYCODE_VOLUME_DOWN:
-			if (counter < callLog.size() - 1)
-				changeVisibility(View.FOCUS_DOWN);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                if (counter < callLog.size() - 1)
+                    changeVisibility(View.FOCUS_DOWN);
 
-			break;
-		case KeyEvent.KEYCODE_VOLUME_UP:
+                break;
+            case KeyEvent.KEYCODE_VOLUME_UP:
 
-			if (counter > 0)
-				changeVisibility(View.FOCUS_UP);
-			break;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+                if (counter > 0)
+                    changeVisibility(View.FOCUS_UP);
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

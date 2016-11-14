@@ -26,20 +26,20 @@ import android.widget.TextView;
 
 public class PrismaFListenerQueue implements OnFocusChangeListener {
 
-	@Override
-	public void onFocusChange(View v, boolean hasFocus) {
-		if(v.isFocused()){
-			String s;
-			if(v instanceof Button)
-				s = ((Button)v).getText().toString();
-			else if(v instanceof TextView){
-				s = ((TextView)v).getText().toString();
-			}else{
-				return;
-			}
-			
-			Tools.speak(s, true);
-		}
-	}
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (v.isFocused()) {
+            String s;
+            if (v instanceof Button)
+                s = ((Button) v).getText().toString();
+            else if (v instanceof TextView) {
+                s = ((TextView) v).getText().toString();
+            } else {
+                return;
+            }
+
+            Tools.speak(s, false);
+        }
+    }
 
 }

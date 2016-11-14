@@ -27,17 +27,18 @@ import com.condomitti.prisma.utils.Tools;
 
 public class Receiver_BatteryStatus extends BroadcastReceiver {
 
-	/**
-	 * This BroadcastReceiver is called whenever battery status is low (warned by the system)
-	 * @param ctx
-	 * @param data
+    /**
+     * This BroadcastReceiver is called whenever battery status is low (warned by the system)
+     *
+     * @param ctx
+     * @param data
      */
-	@Override
-	public void onReceive(Context ctx, Intent data) {
-		Tools.speak(ctx.getResources().getString(R.string.low_battery_warning), true);
-		Intent i = new Intent(ctx, Welcome.class);
-		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		ctx.startActivity(i);
-	}
+    @Override
+    public void onReceive(Context ctx, Intent data) {
+        Tools.speak(ctx.getResources().getString(R.string.low_battery_warning), true);
+        Intent i = new Intent(ctx, Welcome.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ctx.startActivity(i);
+    }
 
 }

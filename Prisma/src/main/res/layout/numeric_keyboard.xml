@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~     This file is part of Prisma.
   ~
   ~     Prisma is free software: you can redistribute it and/or modify
@@ -25,13 +24,13 @@
     <ScrollView
         android:id="@+id/scrollNumKeyboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <View
                 android:id="@+id/focusRequester"
@@ -45,19 +44,18 @@
                 style="@style/TelephoneDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="true" >
-            </TextView>
+                android:focusable="true"></TextView>
 
             <TableLayout
                 android:id="@+id/tableLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal" >
+                    android:gravity="center_horizontal">
 
                     <com.condomitti.prisma.widgets.UntouchableButton
                         android:id="@+id/btnNum1"
@@ -91,7 +89,7 @@
                     android:id="@+id/tableRow2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal" >
+                    android:gravity="center_horizontal">
 
                     <com.condomitti.prisma.widgets.UntouchableButton
                         android:id="@+id/btnNum4"
@@ -125,7 +123,7 @@
                     android:id="@+id/tableRow3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal" >
+                    android:gravity="center_horizontal">
 
                     <com.condomitti.prisma.widgets.UntouchableButton
                         android:id="@+id/btnNum7"
@@ -159,7 +157,7 @@
                     android:id="@+id/tableRow4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal" >
+                    android:gravity="center_horizontal">
 
                     <com.condomitti.prisma.widgets.UntouchableButton
                         android:id="@+id/btnNumAst"

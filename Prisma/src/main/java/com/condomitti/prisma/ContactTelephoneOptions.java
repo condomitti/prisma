@@ -35,103 +35,102 @@ import com.condomitti.prisma.utils.SuperActivity;
 import com.condomitti.prisma.utils.SuperDialog;
 import com.condomitti.prisma.utils.Tools;
 
-public class ContactTelephoneOptions extends SuperActivity implements OnClickListener{
+public class ContactTelephoneOptions extends SuperActivity implements OnClickListener {
 
-	Button btnCallThisNumber, btnSendSMS, btnCancel = null;
-	String contactPhone = null;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    Button btnCallThisNumber, btnSendSMS, btnCancel = null;
+    String contactPhone = null;
 
-		Tools.setScreenSettings(this);
-		
-		makeUpDialog();
-	}
-	
-		
-	public void makeUpDialog(){
-		
-		Bundle b = getIntent().getExtras();
-		
-		String contactName = b.getString("contactName");
-		contactPhone = b.getString("contactPhone");
-		
-		Dialog dialog = new SuperDialog(this);
-		dialog.setContentView(R.layout.contact_telephone_options);
-		super.loadTouchables(dialog.findViewById(R.id.parentLayout));
-		dialog.setCancelable(false);
-		dialog.setTitle(contactName);
-		
-		TextView title = (TextView)dialog.findViewById(R.id.titleContactTelephoneOptions);
-		title.setFocusable(true);
-		title.requestFocus();
-		
-		/**
-		 * Retrieves references
-		 */
-		btnCallThisNumber = (Button)dialog.findViewById(R.id.btnCallThisNumber);
-		btnSendSMS = (Button)dialog.findViewById(R.id.btnSendSMSToThisNumber);
-		btnCancel = (Button)dialog.findViewById(R.id.btnCancel);
-		
-		/**
-		 * Sets Listeners
-		 */
-		
-		btnCallThisNumber.setOnClickListener(this);
-		btnSendSMS.setOnClickListener(this);
-		btnCancel.setOnClickListener(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Tools.setScreenSettings(this);
+
+        makeUpDialog();
+    }
+
+
+    public void makeUpDialog() {
+
+        Bundle b = getIntent().getExtras();
+
+        String contactName = b.getString("contactName");
+        contactPhone = b.getString("contactPhone");
+
+        Dialog dialog = new SuperDialog(this);
+        dialog.setContentView(R.layout.contact_telephone_options);
+        super.loadTouchables(dialog.findViewById(R.id.parentLayout));
+        dialog.setCancelable(false);
+        dialog.setTitle(contactName);
+
+        TextView title = (TextView) dialog.findViewById(R.id.titleContactTelephoneOptions);
+        title.setFocusable(true);
+        title.requestFocus();
+
+        /**
+         * Retrieves references
+         */
+        btnCallThisNumber = (Button) dialog.findViewById(R.id.btnCallThisNumber);
+        btnSendSMS = (Button) dialog.findViewById(R.id.btnSendSMSToThisNumber);
+        btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+
+        /**
+         * Sets Listeners
+         */
+
+        btnCallThisNumber.setOnClickListener(this);
+        btnSendSMS.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
 //		btnCallThisNumber.setOnFocusChangeListener(Tools.pfListener);
 //		btnSendSMS.setOnFocusChangeListener(Tools.pfListener);
 //		btnCancel.setOnFocusChangeListener(Tools.pfListener);
-		
-		dialog.show();
-		Tools.speak("O que deseja fazer?", true);
-	}
-	
-	@Override
-	public void onClick(View v) {
-		
-		Tools.speak("Selecionado " + ((Button)v).getText().toString(), false);
-		
-		switch (v.getId()) {
-		case R.id.btnCallThisNumber:
-			Tools.showConfirm(this, "Confirma ligar para " + Tools.handleNumber(contactPhone) + "?");
-			break;
-		case R.id.btnSendSMSToThisNumber:
-			break;
-		case R.id.btnCancel:
-			finish();
-			break;
 
-		}
-	}
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		switch (requestCode) {
-		case Tools.SHOW_SPOKEN_DIALOG:
-			if(resultCode == SpokenDialog.RESULT_YES){
+        dialog.show();
+        Tools.speak("O que deseja fazer?", true);
+    }
 
-				Intent i = new Intent(Intent.ACTION_CALL);
-				i.setData(Uri.parse("tel://" + contactPhone));
-				if(ContextCompat.checkSelfPermission(this , Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
+    @Override
+    public void onClick(View v) {
 
-                    startActivityForResult(i, Tools.CALL_PHONE_ACTIVITY);
+        Tools.speak("Selecionado " + ((Button) v).getText().toString(), false);
 
+        switch (v.getId()) {
+            case R.id.btnCallThisNumber:
+                Tools.showConfirm(this, "Confirma ligar para " + Tools.handleNumber(contactPhone) + "?");
+                break;
+            case R.id.btnSendSMSToThisNumber:
+                break;
+            case R.id.btnCancel:
+                finish();
+                break;
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case Tools.SHOW_SPOKEN_DIALOG:
+                if (resultCode == SpokenDialog.RESULT_YES) {
+
+                    Intent i = new Intent(Intent.ACTION_CALL);
+                    i.setData(Uri.parse("tel://" + contactPhone));
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+
+                        startActivityForResult(i, Tools.CALL_PHONE_ACTIVITY);
+
+                    }
                 }
-			}
 
-			break;
-		}
-	}
-	
-	
-	
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-		return true;
-	}
+                break;
+        }
+    }
+
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 }
