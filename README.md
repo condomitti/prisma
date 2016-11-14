@@ -3,7 +3,9 @@ Android app for low/no vision individuals
 
 This is a project I started in 2010 to help people with no vision at all. The objective is to have an app that replaces basic telephone functions with very simple (mainly vertical) spoken windows.
 User can control screen by using the volume controls - volume up/down changes the focus of the component on the screen - and activate the currently selected button with a two-fingers tap.
+
 To catch a ringing call: two single-finger tap on the screen
+
 To decline (or end) a call: three single-finger tap on the screen
 
 
@@ -15,5 +17,7 @@ To decline (or end) a call: three single-finger tap on the screen
 
 
 _This is an ongoing project as there are still a lot of work to be done on it. Some features are still lacking and I pretend to keep working on them. Suggestions are very welcome - and so are pull requests =-)_
+
+If you don't want to build the app yourself there's a compiled/signed version of it: [https://drive.google.com/open?id=0Bzjn7_itK9EdQk5BSFB4VkYzUUE](https://drive.google.com/open?id=0Bzjn7_itK9EdQk5BSFB4VkYzUUE)
 
 Please help us spreading this app to blind individuals!
